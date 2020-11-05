@@ -3,6 +3,7 @@
 import functions.logger as logger
 import numpy as np
 import tensorflow as tf
+#tf.enable_eager_execution()
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -19,23 +20,16 @@ class TensorFlow():
         # Initialise logger
         self.logger = logger.initialise_logger()
 
-        # Load data
-        data = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer/breast-cancer.data',
-                           sep=",",
-                           names=["Class", "age", "menopause", "tumor-size", "inv-nodes", "node-caps", "deg-malig",
-                                  "breast", "breast-quad", "irradiat"])
-
-
         # Network parameters
         n_hidden1 = 10
         n_hidden2 = 10
-        n_input = 2
-        n_output = 2
+        n_input = 9
+        n_output = 1
 
         # Learning parameters
         learning_constant = 0.2
         number_epochs = 1000
-        batch_size = 1000
+        batch_size = 20
 
         # Defining the input and the output
         X = tf.placeholder("float", [None, n_input])
@@ -69,32 +63,35 @@ class TensorFlow():
         # Initializing the variables
         init = tf.global_variables_initializer()
 
-        y = pd.DataFrame(data['Class'])
-        X = data.drop('Class', axis=1)
+        # Load data
+        data = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer/breast-cancer.data',
+                           sep=",",
+                           names=["Class", "age", "menopause", "tumor-size", "inv-nodes", "node-caps", "deg-malig",
+                                  "breast", "breast-quad", "irradiat"])
 
-        label = y
+        y_data = pd.DataFrame(data['Class'])
+        X_data = data.drop('Class', axis=1)
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=seed)  # Test is 30%
-        X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.50, random_state=seed)  # # 0.5 x 0.3 = 0.15
-        X_train, X_test, X_val, y_train, y_test, y_val = X_train.transpose().to_numpy(), X_test.transpose().to_numpy(), X_val.transpose().to_numpy(),\
-                                                         y_train.transpose().to_numpy(), y_test.transpose().to_numpy(), y_val.transpose().to_numpy()
+        # Encoding categorical label
+        print(f"Encoding of Class: \n{dict(enumerate (y_data['Class'].astype('category').cat.categories))}")
+        y_data['Class'] = y_data['Class'].astype('category').cat.codes
 
-        print(type(X_train))
-        print(X_train[1])
-        '''
-        train, test = train_test_split(data, test_size=0.2)
-        train, val = train_test_split(train, test_size=0.2)
-        print(len(train), 'train examples')
-        print(len(val), 'validation examples')
-        print(len(test), 'test examples')
+        # Encoding categorical features
+        categorical_columns = ["age", "menopause", "tumor-size", "inv-nodes", "node-caps", "breast", "breast-quad",
+                               "irradiat"]
+        for column in categorical_columns:
+            print(f"Encoding of {column}: \n{dict(enumerate(X_data[column].astype('category').cat.categories))}")
+            X_data[column] = X_data[column].astype('category').cat.codes
 
-        batch_size = 5  # A small batch sized is used for demonstration purposes
-        train = self.df_to_dataset(train, batch_size=batch_size, label='Class')
-        test = self.df_to_dataset(test, shuffle=False, batch_size=batch_size, label='Class')
-        val = self.df_to_dataset(val, shuffle=False, batch_size=batch_size, label='Class')
-        '''
+        # Set label
+        label = y_data.values
 
-
+        # Split data in Training 70%, Test 15% and Validation 15%
+        X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.30, random_state=seed)
+        X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.50, random_state=seed)
+        # Convert to arrays
+        X_train, X_test, X_val, y_train, y_test, y_val = X_train.values, X_test.values, X_val.values,\
+                                                         y_train.values, y_test.values, y_val.values
 
         with tf.Session() as sess:
 
@@ -134,16 +131,6 @@ class TensorFlow():
         # Task of neurons of output layer
         out_layer = tf.add(tf.matmul(layer_2, self.w3),self.b3)
         return out_layer
-
-    # A utility method to create a tf.data dataset from a Pandas Dataframe
-    def df_to_dataset(self, dataframe, shuffle=True, batch_size=32, label='target'):
-        dataframe = dataframe.copy()
-        labels = dataframe.pop(label)
-        ds = tf.data.Dataset.from_tensor_slices((dict(dataframe), labels))
-        if shuffle:
-            ds = ds.shuffle(buffer_size=len(dataframe))
-        ds = ds.batch(batch_size)
-        return ds
 
 
 if __name__ == "__main__":
