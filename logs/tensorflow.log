@@ -1,0 +1,898 @@
+30/10/2020 19:57:21:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+30/10/2020 19:57:21:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+30/10/2020 19:58:04:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+30/10/2020 19:58:05:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+30/10/2020 20:00:47:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+30/10/2020 20:00:47:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+30/10/2020 20:01:34:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+30/10/2020 20:01:34:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+30/10/2020 20:01:40:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+30/10/2020 20:01:40:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+30/10/2020 20:13:00:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+30/10/2020 20:13:00:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 07:54:46:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 07:54:47:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 07:56:28:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 07:56:28:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 07:57:37:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 07:57:37:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:00:32:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:00:32:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:03:25:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:03:25:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:03:46:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:03:46:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:07:42:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:07:42:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:08:05:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:08:05:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:09:17:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:09:17:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:15:45:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:15:45:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:16:10:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:16:10:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:17:45:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:17:45:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:23:47:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:23:47:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:24:53:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:24:54:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:25:37:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:25:37:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:28:10:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:28:10:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:29:47:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:29:47:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:38:25:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:38:25:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:43:05:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:43:05:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:46:04:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:46:04:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:53:09:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:53:09:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:56:55:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:56:55:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 08:58:35:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 08:58:35:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:66: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:17:24:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:17:24:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:18:19:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:18:19:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:25:55:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:25:55:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:26:26:WARNING Tensor._shape is private, use Tensor.shape instead. Tensor._shape will eventually be removed.
+05/11/2020 10:26:26:WARNING Tensor._shape is private, use Tensor.shape instead. Tensor._shape will eventually be removed.
+05/11/2020 10:29:46:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:29:46:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:34:30:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:34:31:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:38:25:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:38:25:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:40:29:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:40:29:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:45:36:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:45:36:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:46:50:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:46:50:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:49:23:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:49:23:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 10:59:46:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 10:59:46:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:01:08:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:01:09:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:06:29:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:06:29:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:06:55:WARNING Tensor._shape is private, use Tensor.shape instead. Tensor._shape will eventually be removed.
+05/11/2020 11:06:55:WARNING Tensor._shape is private, use Tensor.shape instead. Tensor._shape will eventually be removed.
+05/11/2020 11:09:16:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:09:16:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:10:19:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:10:19:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:18:00:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:18:01:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:18:24:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:18:24:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:22:02:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:22:02:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:26:57:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:26:57:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 11:34:21:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 11:34:22:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 21:23:28:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 21:23:28:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 21:23:56:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 21:23:56:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 21:24:28:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 21:24:29:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 21:26:59:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 21:26:59:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 21:27:48:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 21:27:48:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 21:40:17:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 21:40:17:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 21:54:06:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 21:54:06:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 21:56:50:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 21:56:50:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:60: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:16:11:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:16:11:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:17:26:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:17:26:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:18:15:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:18:15:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:19:31:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:19:31:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:20:45:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:20:45:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:21:16:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:21:16:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:22:35:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:22:35:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:23:23:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:23:23:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:25:11:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:25:11:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:26:14:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:26:14:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:28:12:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:28:12:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:39:25:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:39:25:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:39:36:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:39:36:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:49:02:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:49:02:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:52:06:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:52:06:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:52:38:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:52:38:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 22:55:59:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 22:55:59:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 23:00:47:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 23:00:48:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 23:01:43:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 23:01:43:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 23:06:05:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 23:06:05:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 23:10:27:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 23:10:27:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 23:12:58:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 23:12:58:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 23:17:31:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 23:17:31:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 23:18:04:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+05/11/2020 23:18:04:WARNING From C:/Users/aonnis/Desktop/Data Science MSc/COMP3009-TeamMatrix/src/main_classification.py:59: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+05/11/2020 23:20:48:WARNING From C:\Users\aonnis\Anaconda3\envs\ml_tf\lib\site-packages\tensorflow\python\framework\op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
