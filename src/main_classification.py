@@ -73,14 +73,14 @@ class TensorFlow():
         X_data = data.drop('Class', axis=1)
 
         # Encoding categorical label
-        print(f"Encoding of Class: \n{dict(enumerate (y_data['Class'].astype('category').cat.categories))}")
+        print(f"Encoding of Class: \n{dict(enumerate (y_data['Class'].astype('category').cat.categories))}\n")
         y_data['Class'] = y_data['Class'].astype('category').cat.codes
 
         # Encoding categorical features
         categorical_columns = ["age", "menopause", "tumor-size", "inv-nodes", "node-caps", "breast", "breast-quad",
                                "irradiat"]
         for column in categorical_columns:
-            print(f"Encoding of {column}: \n{dict(enumerate(X_data[column].astype('category').cat.categories))}")
+            print(f"Encoding of {column}: \n{dict(enumerate(X_data[column].astype('category').cat.categories))}\n")
             X_data[column] = X_data[column].astype('category').cat.codes
 
         # Set label
@@ -93,13 +93,18 @@ class TensorFlow():
         X_train, X_test, X_val, y_train, y_test, y_val = X_train.values, X_test.values, X_val.values,\
                                                          y_train.values, y_test.values, y_val.values
 
+        X_train_batches = np.split(X_train, 5)
+        y_train_batches = np.split(y_train, 5)
+
         with tf.Session() as sess:
 
             sess.run(init)
 
             # Training epoch
             for epoch in range(number_epochs):
-                sess.run(optimizer, feed_dict={X: X_train, Y: y_train})
+
+                for X_batch, y_batch in zip(X_train_batches, y_train_batches):
+                    sess.run(optimizer, feed_dict={X: X_batch, Y: y_batch})
                 # Display the epoch
                 if epoch % 100 == 0:
                     print("Epoch:", '%d' % (epoch))
@@ -107,11 +112,21 @@ class TensorFlow():
             # Test model
             pred = (neural_network)  # Apply softmax to logits
             accuracy = tf.keras.losses.MSE(pred, Y)
-            print("Accuracy:", accuracy.eval({X: X_train, Y: y_train}))
+            #print("Accuracy:", accuracy.eval({X: X_train, Y: y_train}))
             # tf.keras.evaluate(pred,)
-            print("Prediction:", pred.eval({X: X_train}))
+            #print("Prediction:", pred.eval({X: X_train}))
             output = neural_network.eval({X: X_train})
-            plt.plot(y_train[0:10], 'ro', output[0:10], 'bo')
+            result = pd.DataFrame()
+            result['label'] = list(y_train)
+            result['prediction'] = list(pred.eval({X: X_train}))
+            result['output'] = list(neural_network.eval({X: X_train}))
+            result['accuracy'] = list(accuracy.eval({X: X_train, Y: y_train}))
+            #result = pd.DataFrame({"label": y_train,
+            #                       "prediction": pred.eval({X: X_train}),
+            #                       "output": neural_network.eval({X: X_train}),
+            #                       "accuracy": accuracy.eval({X: X_train, Y: y_train})
+            #                       })
+            plt.plot(y_train, 'ro', output, 'bo')
             plt.ylabel('some numbers')
             plt.show()
 
@@ -121,7 +136,7 @@ class TensorFlow():
 
             print(correct_prediction1)
             print(estimated_class)
-            print(accuracy1.eval({X: X}))
+            print(accuracy1.eval({X: X_data}))
 
     def multilayer_perceptron(self, input_d):
         # Task of neurons of first hidden layer
