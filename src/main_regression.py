@@ -60,9 +60,9 @@ class TensorFlow():
         self.logger.info("Hello")
 
         # Load data
-        data = pd.read_csv('resources/obesitydata.csv', sep="\t",
+        data = pd.read_csv('https://archive.ics.uci.edu/ml/datasets/Estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition+ ', sep="\t",
                            names=["Gender", "Age", "Height", "Weight", "family_history_with_overweight", "FAVC",
-                                  "FCVC", "CAEC", "SMOKE", "CH2O", "SCC", "FAF", "TUE", "CALC", "MTRANS", "NObeyesdad"])
+                                  "FCVC", "NCP", "CAEC", "SMOKE", "CH2O", "SCC", "FAF", "TUE", "CALC", "MTRANS", "NObeyesdad"])
         print(data.head(10))
 
         # Create model
