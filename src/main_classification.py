@@ -20,7 +20,7 @@ class TensorFlow():
         self.logger.info("Hello")
 
         # Load data
-        data = pd.read_csv('https://archive.ics.uci.edu/ml/datasets/Breast+Cancer', sep="\t",
+        data = pd.read_csv('resources/ObesityDataSet_raw.csv', sep="\t",
                            names=["Class", "age", "menopause", "tumor-size", "inv-nodes", "node-caps", "deg-malig", "breast", "breast-quad", "irradiat"])
         print(data.head(10))
 
