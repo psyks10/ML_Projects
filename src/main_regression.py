@@ -43,9 +43,9 @@ class TensorFlow():
         n_output = 7
 
         # Learning parameters
-        learning_constant = 0.02
-        number_epochs = 1000
-        batch_size = 1000
+        learning_constant = 0.2
+        number_epochs =2000
+        batch_size = 50
 
         # Defining the input and the output
         X = tf.placeholder("float", [None, n_input], name="X")
@@ -93,26 +93,17 @@ class TensorFlow():
                 y_train_batches = np.array_split(y_train, total_batch)
 
                 # Mini-batch training
-                #for X_batch, y_batch in zip(X_train_batches, y_train_batches):
-                #     sess.run(optimizer, feed_dict={X: X_batch, Y: y_batch})
+                for X_batch, y_batch in zip(X_train_batches, y_train_batches):
+                     sess.run(optimizer, feed_dict={X: X_batch, Y: y_batch})
 
                 # Train all data at once
-                sess.run(optimizer, feed_dict={X: X_train, Y: y_train})
+                #sess.run(optimizer, feed_dict={X: X_train, Y: y_train})
 
                 # Display the epoch
                 if epoch % 100 == 0:
                     print("Epoch:", '%d' % epoch)
-                    pred = sess.run(neural_network, feed_dict={X: X_test})
-                    print("prediction:", np.argmax(pred, axis=1))
-                    print("y predicts:", np.argmax(y_test, axis=1))
-                    print("Cost:", sess.run(loss_op, feed_dict={X: X_test, Y: y_test}))
-                    accuracy = tf.keras.losses.MSE(pred, Y)
-                    print("Accuracy:", sess.run(accuracy, feed_dict={X: X_test, Y: y_test}))
-                    print("______________________________________")
 
             # Test model
-
-            # The following line only assigns the neural_network to pred??
             pred = (neural_network)  # Apply softmax to logits
             accuracy = tf.keras.losses.MSE(pred, Y)
 
@@ -121,12 +112,6 @@ class TensorFlow():
             # output = neural_network.eval({X: X_train})
 
             # Training accuracy
-            result = pd.DataFrame()
-            result['label'] = list(y_train)
-            result['prediction'] = list(pred.eval({X: X_train}))
-            result['output'] = list(neural_network.eval({X: X_train}))
-            result['accuracy'] = list(accuracy.eval({X: X_train, Y: y_train}))
-
             estimated_class = tf.argmax(pred, axis=1)  # +1e-50-1e-50
             correct_prediction1 = tf.equal(estimated_class, label)
             accuracy1 = tf.reduce_mean(tf.cast(correct_prediction1, tf.float32))
@@ -136,12 +121,6 @@ class TensorFlow():
             print(accuracy1.eval({X: X_data}))
 
             # Validation accuracy
-            result_val = pd.DataFrame()
-            result_val['label'] = list(y_val)
-            result_val['prediction'] = list(pred.eval({X: X_val}))
-            result_val['output'] = list(neural_network.eval({X: X_val}))
-            result_val['accuracy'] = list(accuracy.eval({X: X_val, Y: y_val}))
-
             estimated_class = tf.argmax(pred, axis=1)  # +1e-50-1e-50
             correct_prediction1 = tf.equal(estimated_class, pd.DataFrame(y_val).idxmax(axis=1).values)
             accuracy1 = tf.reduce_mean(tf.cast(correct_prediction1, tf.float32))
@@ -177,6 +156,7 @@ class TensorFlow():
         # Split data in Training 60%, Test 20% and Validation 20%
         X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.40, random_state=self.seed)
         X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.50, random_state=self.seed)
+
         # Convert to arrays
         X_train, X_test, X_val, y_train, y_test, y_val = X_train.values, X_test.values, X_val.values, \
                                                          y_train.values, y_test.values, y_val.values
