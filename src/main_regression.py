@@ -3,9 +3,10 @@
 import numpy as np
 import tensorflow as tf
 import pandas as pd
+import matplotlib.pyplot as plt
+import zipfile
 from sklearn.model_selection import train_test_split
-
-from src import logger
+from src.logger import initialise_logger
 
 
 class TensorFlow():
@@ -18,7 +19,7 @@ class TensorFlow():
         tf.set_random_seed(self.seed)
 
         # Initialise logger
-        self.logger = logger.initialise_logger()
+        self.logger = initialise_logger()
 
         # Network parameters
         n_hidden1 = 10
@@ -55,15 +56,15 @@ class TensorFlow():
         neural_network = self.multilayer_perceptron(X)
 
         # Define loss and optimizer
-        #loss_op = tf.reduce_mean(tf.math.squared_difference(neural_network, Y))
-        loss_op = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=neural_network, labels=Y))
+        loss_op = tf.reduce_mean(tf.math.squared_difference(neural_network, Y))
+        #loss_op = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=neural_network, labels=Y))
         optimizer = tf.train.GradientDescentOptimizer(learning_constant).minimize(loss_op)
 
         # Initializing the variables
         init = tf.global_variables_initializer()
 
         # Load the data
-        X_data, y_data, X_train, X_test, X_val, y_train, y_test, y_val, label = self.load_breast_cancer_data()
+        X_data, y_data, X_train, X_test, X_val, y_train, y_test, y_val, label = self.load_obesity_data()
 
         with tf.Session() as sess:
 
@@ -138,36 +139,44 @@ class TensorFlow():
             # plt.ylabel('some numbers')
             # plt.show()
 
-    def load_breast_cancer_data(self):
-        # Load data
-        data = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer/breast-cancer.data',
-                           sep=",",
-                           names=["Class", "age", "menopause", "tumor-size", "inv-nodes", "node-caps", "deg-malig",
-                                  "breast", "breast-quad", "irradiat"])
+    def load_obesity_data(self):
+        import requests, zipfile, io, shutil
+        file = 'ObesityDataSet_raw_and_data_sinthetic%20%282%29.zip'
+        path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00544/';
 
-        # Dropping incomplete data - "?"
-        data = data.replace('?', np.nan).dropna(axis=0, how='any')
-        # Shuffling dataframe
-        data = data.sample(frac=1, random_state=self.seed).reset_index(drop=True)
-        # Separate features and label
-        y_data = pd.DataFrame(data['Class'])
-        X_data = data.drop('Class', axis=1)
-        # Set label
-        label = data['Class'].astype('category').cat.codes
-        label = label.values
-        # Encode the label using dummies
-        y_data = pd.get_dummies(y_data)
+        # Download zip file into folder 'data' and extract files
+        zipfile.ZipFile(io.BytesIO(requests.get(path+file).content)).extractall("data")
+        data = pd.read_csv('data/ObesityDataSet_raw_and_data_sinthetic.csv',skiprows=1,sep=',',names=["Gender","Age","Height","Weight","family_history_with_overweight","FAVC","FCVC","NCP","CAEC","SMOKE","CH2O","SCC","FAF","TUE","CALC","MTRANS","NObeyesdad"])
+
+        # After extracting data from csv delete folder 'data'
+        dir_path = 'data'
+        try:
+            shutil.rmtree(dir_path)
+        except OSError as e:
+            print("Error: %s : %s" % (dir_path, e.strerror))
 
         # Encoding categorical features
-        categorical_columns = ["age", "menopause", "tumor-size", "inv-nodes", "node-caps", "breast", "breast-quad",
-                               "irradiat"]
+        categorical_columns = ["Gender", "family_history_with_overweight", "FAVC", "CAEC", "SMOKE", "SCC", "CALC",
+                                   "MTRANS", "NObeyesdad"]
         for column in categorical_columns:
-            print(f"Encoding of {column}: \n{dict(enumerate(X_data[column].astype('category').cat.categories))}\n")
-            X_data[column] = X_data[column].astype('category').cat.codes
+            print(f"Encoding of {column}: \n{dict(enumerate(data[column].astype('category').cat.categories))}\n")
+            data[column] = data[column].astype('category').cat.codes
+        print(data[:10])
+
+        y_data = pd.DataFrame(data['NObeyesdad'])
+        X_data = data.drop('NObeyesdad', axis=1)
+
+        # Set label
+        label = data['NObeyesdad'].astype('category').cat.codes
+        label = label.values
+
+        # Encode the label using dummies
+        y_data = pd.get_dummies(y_data)
 
         # Split data in Training 60%, Test 20% and Validation 20%
         X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.40, random_state=self.seed)
         X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.50, random_state=self.seed)
+
         # Convert to arrays
         X_train, X_test, X_val, y_train, y_test, y_val = X_train.values, X_test.values, X_val.values, \
                                                          y_train.values, y_test.values, y_val.values
@@ -179,8 +188,7 @@ class TensorFlow():
         # Task of neurons of second hidden layer
         layer_2 = tf.nn.sigmoid(tf.add(tf.matmul(layer_1, self.w2), self.b2))
         # Task of neurons of output layer
-        out_layer = tf.add(tf.matmul(layer_2, self.w3),self.b3)
-
+        out_layer = tf.add(tf.matmul(layer_2, self.w3), self.b3)
         return out_layer
 
 
