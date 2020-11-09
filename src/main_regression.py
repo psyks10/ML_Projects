@@ -3,13 +3,18 @@ import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
 from src.logger import initialise_logger
 
 
-class TensorFlow():
+class TensorFlow:
 
     def __init__(self):
-        import requests, zipfile, io, shutil
+        import requests
+        import zipfile
+        import io
+        import shutil
 
         # Set seed
         self.seed = 101
@@ -20,7 +25,7 @@ class TensorFlow():
         self.logger = initialise_logger()
 
         file = 'ObesityDataSet_raw_and_data_sinthetic%20%282%29.zip'
-        path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00544/';
+        path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00544/'
 
         # Download zip file into folder 'data' and extract files
         zipfile.ZipFile(io.BytesIO(requests.get(path + file).content)).extractall("data")
@@ -39,12 +44,13 @@ class TensorFlow():
         # Network parameters
         n_hidden1 = 10
         n_hidden2 = 10
+        n_hidden3 = 10
         n_input = 16
         n_output = 7
 
         # Learning parameters
-        learning_constant = 0.2
-        number_epochs =2000
+        learning_constant = 0.3
+        number_epochs = 2000
         batch_size = 50
 
         # Defining the input and the output
@@ -57,22 +63,25 @@ class TensorFlow():
         self.b1 = tf.Variable(tf.random_normal([n_hidden1]))
         # Biases second hidden layer
         self.b2 = tf.Variable(tf.random_normal([n_hidden2]))
+        # Biases second hidden layer
+        self.b3 = tf.Variable(tf.random_normal([n_hidden3]))
         # Biases output layer
-        self.b3 = tf.Variable(tf.random_normal([n_output]))
+        self.b4 = tf.Variable(tf.random_normal([n_output]))
 
         # Weights connecting input layer with first hidden layer
         self.w1 = tf.Variable(tf.random_normal([n_input, n_hidden1]))
         # Weights connecting first hidden layer with second hidden layer
         self.w2 = tf.Variable(tf.random_normal([n_hidden1, n_hidden2]))
+        # Weights connecting first hidden layer with second hidden layer
+        self.w3 = tf.Variable(tf.random_normal([n_hidden2, n_hidden3]))
         # Weights connecting second hidden layer with output layer
-        self.w3 = tf.Variable(tf.random_normal([n_hidden2, n_output]))
+        self.w4 = tf.Variable(tf.random_normal([n_hidden3, n_output]))
 
         # Create model
         neural_network = self.multilayer_perceptron(X)
 
         # Define loss and optimizer
-        #loss_op = tf.reduce_mean(tf.math.squared_difference(neural_network, Y))
-        loss_op = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=neural_network, labels=Y))
+        loss_op = tf.reduce_mean(tf.math.squared_difference(neural_network, Y))
         optimizer = tf.train.GradientDescentOptimizer(learning_constant).minimize(loss_op)
 
         # Initializing the variables
@@ -96,42 +105,49 @@ class TensorFlow():
                 for X_batch, y_batch in zip(X_train_batches, y_train_batches):
                      sess.run(optimizer, feed_dict={X: X_batch, Y: y_batch})
 
-                # Train all data at once
-                #sess.run(optimizer, feed_dict={X: X_train, Y: y_train})
-
                 # Display the epoch
-                if epoch % 100 == 0:
+                if epoch % (number_epochs/10) == 0:
                     print("Epoch:", '%d' % epoch)
+                    pred = sess.run(neural_network, feed_dict={X: X_test})
+                    #print("prediction:", np.argmax(pred, axis=1))
+                    #print("y predicts:", np.argmax(y_test, axis=1))
+                    print("Cost:", sess.run(loss_op, feed_dict={X: X_test, Y: y_test}))
+                    accuracy = tf.keras.losses.MSE(pred, Y)
+                    print("Accuracy:", sess.run(accuracy, feed_dict={X: X_test, Y: y_test}))
+                    print("______________________________________")
+
 
             # Test model
             pred = (neural_network)  # Apply softmax to logits
             accuracy = tf.keras.losses.MSE(pred, Y)
+            print("Accuracy:", accuracy.eval({X: X_train, Y: y_train}))
+            print("Prediction:", pred.eval({X: X_train}))
+            output = neural_network.eval({X: X_train})
 
-            # pred_accuracy = accuracy.eval({X: X_train, Y: y_train})
-            # prediction = pred.eval({X: X_train})
-            # output = neural_network.eval({X: X_train})
+            plt.plot(y_train[0:10], 'ro', output[0:10], 'bo')
+            plt.ylabel('some numbers')
+            plt.show()
 
             # Training accuracy
-            estimated_class = tf.argmax(pred, axis=1)  # +1e-50-1e-50
+            estimated_class = tf.argmax(pred, 1)  # +1e-50-1e-50
             correct_prediction1 = tf.equal(estimated_class, label)
             accuracy1 = tf.reduce_mean(tf.cast(correct_prediction1, tf.float32))
-
-            print(correct_prediction1)
-            print(estimated_class)
+            #print("correct_prediction1: ", correct_prediction1)
+            #print("estimated_class: ", estimated_class)
             print(accuracy1.eval({X: X_data}))
 
             # Validation accuracy
             estimated_class = tf.argmax(pred, axis=1)  # +1e-50-1e-50
             correct_prediction1 = tf.equal(estimated_class, pd.DataFrame(y_val).idxmax(axis=1).values)
             accuracy1 = tf.reduce_mean(tf.cast(correct_prediction1, tf.float32))
-
-            print("correct_prediction1: ", correct_prediction1)
-            print("estimated_class: ", estimated_class)
+            #print("correct_prediction1: ", correct_prediction1)
+            #print("estimated_class: ", estimated_class)
             print("accuracy1", accuracy1.eval({X: X_val}))
 
-            # plt.plot(y_train, 'ro', output, 'bo')
-            # plt.ylabel('some numbers')
-            # plt.show()
+
+
+
+
 
     def load_obesity_data(self):
         # Separate features and label
@@ -158,18 +174,21 @@ class TensorFlow():
         X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.50, random_state=self.seed)
 
         # Convert to arrays
-        X_train, X_test, X_val, y_train, y_test, y_val = X_train.values, X_test.values, X_val.values, \
-                                                         y_train.values, y_test.values, y_val.values
+        X_train, X_test, X_val, y_train, y_test, y_val = X_train.values, X_test.values, X_val.values, y_train.values, \
+                y_test.values, y_val.values
         return X_data, y_data, X_train, X_test, X_val, y_train, y_test, y_val, label
 
     def multilayer_perceptron(self, input_d):
         # Task of neurons of first hidden layer
-        layer_1 = tf.nn.sigmoid(tf.add(tf.matmul(input_d, self.w1), self.b1))
+        layer_1 = tf.nn.tanh(tf.add(tf.matmul(input_d, self.w1), self.b1))
         # Task of neurons of second hidden layer
-        layer_2 = tf.nn.sigmoid(tf.add(tf.matmul(layer_1, self.w2), self.b2))
+        layer_2 = tf.nn.tanh(tf.add(tf.matmul(layer_1, self.w2), self.b2))
+        # Task of neurons of third hidden layer
+        layer_3 = tf.nn.tanh(tf.add(tf.matmul(layer_2, self.w3), self.b3))
         # Task of neurons of output layer
-        out_layer = tf.add(tf.matmul(layer_2, self.w3),self.b3)
+        out_layer = tf.add(tf.matmul(layer_3, self.w4), self.b4)
         return out_layer
+
 
 if __name__ == "__main__":
     try:
