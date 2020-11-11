@@ -5,8 +5,8 @@ import numpy as np
 import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-import os
+from sklearn.model_selection import train_test_split, KFold, cross_val_score
+
 
 class TensorFlow():
 
@@ -63,58 +63,45 @@ class TensorFlow():
         init = tf.global_variables_initializer()
 
         # Load the data
-        X_data, y_data, X_train, X_test, X_val, y_train, y_test, y_val, label = self.load_breast_cancer_data()
+        X_data, y_data, X_train, X_test, y_train, y_test, label = self.load_breast_cancer_data()
 
         with tf.Session() as sess:
 
             sess.run(init)
 
-            for epoch in range(number_epochs):
+            test_data_accuracies = []
 
-                # Mini-batch training
-                # size = int(len(X_train) / batch_size)
-                # X_train_batches = np.array_split(X_train, size)
-                # y_train_batches = np.array_split(y_train, size)
-                #
-                # for X_batch, y_batch in zip(X_train_batches, y_train_batches):
-                #     _, c = sess.run([optimizer, loss_op], feed_dict={X: X_batch, Y: y_batch})
+            # K-Fold
+            k_fold = KFold(n_splits=10, random_state=self.seed)
+            i = 0
+            for train_indices, test_indices in k_fold.split(X_train):
+                i += 1
+                print(f"\nFold no. {i}")
 
-                # Train all data at once
-                _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train, Y: y_train})
+                X_train_fold, y_train_fold = X_train[train_indices], y_train[train_indices]
+                X_test_fold, y_test_fold = X_train[test_indices], y_train[test_indices]
+                for epoch in range(number_epochs):
+                    _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
 
-                # Display the epoch
-                if epoch % 100 == 0:
-                    print(f"Epoch: {epoch}, cost: {c}")
+                # Evaluation
+                pred = (neural_network)  # Apply softmax to logits
+                estimated_class = tf.argmax(pred, axis=1)
 
-            # Model evaluation
+                correct_prediction1 = tf.equal(tf.argmax(pred, axis=1), pd.DataFrame(y_test_fold).idxmax(axis=1).values)
+                accuracy1 = tf.reduce_mean(tf.cast(correct_prediction1, tf.float32))
+                print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_test_fold})}')
+                print(f'Correct predictions: {sess.run(correct_prediction1, feed_dict={X: X_test_fold}).sum()} '
+                      f'out of {len(y_test_fold)}')
+                print(f'Accuracy: {accuracy1.eval({X: X_test_fold})}')
+                test_data_accuracies.append(accuracy1.eval({X: X_test_fold}))
 
-            pred = (neural_network)  # Apply softmax to logits
-            accuracy = tf.keras.losses.MSE(pred, Y)
+                print(f"Cost: {c}")
 
-            # Training results
-            result_train = self.generate_summary(X_placeholder=X, Y_placeholder=Y,
-                                                 X_values=X_train, y_values=y_train,
-                                                 accuracy=accuracy, neural_network=pred, session=sess)
+            # Evaluation - training data
+            print(f'K-Fold accuracy: {test_data_accuracies}')
+            print(f'Average K-Fold accuracy: {np.mean(test_data_accuracies)}')
 
-            # Accuracy - whole dataset
-            result_all = self.generate_summary(X_placeholder=X, Y_placeholder=Y,
-                                               X_values=X_data, y_values=y_data.values,
-                                               accuracy=accuracy, neural_network=pred, session=sess)
-            estimated_class = tf.argmax(pred, axis=1)  # +1e-50-1e-50
-            correct_prediction1 = tf.equal(tf.argmax(pred, axis=1), label)
-            accuracy1 = tf.reduce_mean(tf.cast(correct_prediction1, tf.float32))
-
-            print('\nEvaluation of entire dataset')
-            print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_data})}')
-            print(f'Correct predictions: {sess.run(correct_prediction1, feed_dict={X: X_data}).sum()} '
-                  f'out of {len(label)}')
-            print(f'Accuracy: {accuracy1.eval({X: X_data})}')
-
-            # Accuracy - test data
-            result_test = self.generate_summary(X_placeholder=X, Y_placeholder=Y,
-                                                X_values=X_test, y_values=y_test,
-                                                accuracy=accuracy, neural_network=pred, session=sess)
-
+            # Evaluation - test data
             estimated_class = tf.argmax(pred, axis=1)  # +1e-50-1e-50
             correct_prediction1 = tf.equal(tf.argmax(pred, axis=1), pd.DataFrame(y_test).idxmax(axis=1).values)
             accuracy1 = tf.reduce_mean(tf.cast(correct_prediction1, tf.float32))
@@ -125,17 +112,6 @@ class TensorFlow():
                   f'out of {len(X_test)}')
             print(f'Accuracy: {accuracy1.eval({X: X_test})}')
 
-            # Plot
-            output = sess.run(estimated_class, feed_dict={X: X_data})
-            plt.plot(y_data, 'ro', output, 'b.')
-            plt.ylabel('Class')
-            plt.show()
-
-            # Saving
-            # tf.saved_model.simple_save(sess,
-            #                            '/tensorflow_models/',
-            #                            inputs={"myInput": X},
-            #                            outputs={"myOutput": Y})
 
     def generate_summary(self, X_placeholder, Y_placeholder, X_values, y_values, accuracy, neural_network, session):
         result = pd.DataFrame()
@@ -173,15 +149,13 @@ class TensorFlow():
             print(f"Encoding of {column}: \n{dict(enumerate(X_data[column].astype('category').cat.categories))}\n")
             X_data[column] = X_data[column].astype('category').cat.codes
 
-        # Split data in Training 60%, Test 20% and Validation 20%
-        X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.40, random_state=self.seed)
-        X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.50, random_state=self.seed)
+        # Split data in Training 80%, Test 20%
+        X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2, random_state=self.seed)
 
         # Convert to arrays
-        X_train, X_test, X_val, y_train, y_test, y_val = X_train.values, X_test.values, X_val.values, \
-                                                         y_train.values, y_test.values, y_val.values
+        X_train, X_test, y_train, y_test, = X_train.values, X_test.values, y_train.values, y_test.values,
 
-        return X_data, y_data, X_train, X_test, X_val, y_train, y_test, y_val, label
+        return X_data, y_data, X_train, X_test, y_train, y_test, label
 
     def multilayer_perceptron(self, input_d):
         # Task of neurons of first hidden layer
