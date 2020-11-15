@@ -20,7 +20,7 @@ class TensorFlow:
         tf.set_random_seed(self.seed)
 
         # Initialise logger
-        self.logger = initialise_logger()
+        # self.logger = initialise_logger()
 
         file = 'ObesityDataSet_raw_and_data_sinthetic%20%282%29.zip'
         path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00544/'
@@ -104,21 +104,25 @@ class TensorFlow:
                 X_train_fold, y_train_fold = X_train[train_indices], y_train[train_indices]
                 X_test_fold, y_test_fold = X_train[test_indices], y_train[test_indices]
                 for epoch in range(number_epochs):
-                    _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
+                    sess.run(optimizer, feed_dict={X: X_train_fold, Y: y_train_fold})
+                    print(neural_network.eval({X: X_train_fold}))
 
                 # Evaluation
-                pred = (neural_network)  # Apply softmax to logits
-                estimated_class = tf.argmax(pred, axis=1)
+                pred = neural_network  # Apply softmax to logits
+                #list(pred.eval({​​​​X: X_values}​​​​))
+                #print(pred.eval({X: X_train_fold}))
+                print(y_train_fold)
+                #estimated_class = tf.argmax(pred, axis=1)
 
                 correct_prediction1 = tf.equal(tf.argmax(pred, axis=1), pd.DataFrame(y_test_fold).idxmax(axis=1).values)
                 accuracy1 = tf.reduce_mean(tf.cast(correct_prediction1, tf.float32))
-                print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_test_fold})}')
+                #print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_test_fold})}')
                 print(f'Correct predictions: {sess.run(correct_prediction1, feed_dict={X: X_test_fold}).sum()} '
                       f'out of {len(y_test_fold)}')
                 print(f'Accuracy: {accuracy1.eval({X: X_test_fold})}')
                 test_data_accuracies.append(accuracy1.eval({X: X_test_fold}))
 
-                print(f"Cost: {c}")
+                #print(f"Cost: {c}")
 
             # Evaluation - training data
             print(f'K-Fold accuracy: {test_data_accuracies}')
@@ -161,8 +165,8 @@ class TensorFlow:
             print(f"Encoding of {column}: \n{dict(enumerate(X_data[column].astype('category').cat.categories))}\n")
             X_data[column] = X_data[column].astype('category').cat.codes
 
-        X_data = ((X_data - X_data.min()) / (X_data.max() - X_data.min()))
-        y_data = ((y_data - y_data.min()) / (y_data.max() - y_data.min()))
+        #X_data = ((X_data - X_data.min()) / (X_data.max() - X_data.min()))
+        #y_data = ((y_data - y_data.min()) / (y_data.max() - y_data.min()))
 
         # Split data in Training 80%, Test 20%
         X_train, X_test, y_train, y_test = train_test_split(X_data, y_data, test_size=0.2, random_state=self.seed)
