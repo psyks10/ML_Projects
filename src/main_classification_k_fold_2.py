@@ -77,7 +77,7 @@ class TensorFlow():
                 print(f"\nFold no. {i}")
 
                 X_train_fold, y_train_fold = X_train[train_indices], y_train[train_indices]
-                X_test_fold, y_test_fold = X_train[validation_indices], y_train[validation_indices]
+                X_validation_fold, y_validation_fold = X_train[validation_indices], y_train[validation_indices]
 
                 for epoch in range(number_epochs):
                     _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
@@ -85,15 +85,15 @@ class TensorFlow():
                 # Evaluation
                 pred = tf.nn.softmax(neural_network)  # Apply softmax to logits
                 estimated_class = tf.argmax(pred, axis=1)
-                correct_prediction = tf.equal(tf.argmax(pred, axis=1), pd.DataFrame(y_test_fold).idxmax(axis=1).values)
+                correct_prediction = tf.equal(tf.argmax(pred, axis=1), pd.DataFrame(y_validation_fold).idxmax(axis=1).values)
 
                 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-                print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_test_fold})}')
-                print(f'Correct predictions: {sess.run(correct_prediction, feed_dict={X: X_test_fold}).sum()} '
-                      f'out of {len(y_test_fold)}')
-                print(f'Accuracy: {accuracy.eval({X: X_test_fold})}')
+                print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_validation_fold})}')
+                print(f'Correct predictions: {sess.run(correct_prediction, feed_dict={X: X_validation_fold}).sum()} '
+                      f'out of {len(y_validation_fold)}')
+                print(f'Accuracy: {accuracy.eval({X: X_validation_fold})}')
                 print(f"Cost: {c}")
-                validation_data_accuracies.append(accuracy.eval({X: X_test_fold}))
+                validation_data_accuracies.append(accuracy.eval({X: X_validation_fold}))
                 validation_data_costs.append(c)
 
             # Evaluation - training data

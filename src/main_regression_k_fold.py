@@ -82,37 +82,33 @@ class TensorFlow():
                 print(f"\nFold no. {i}")
 
                 X_train_fold, y_train_fold = X_train[train_indices], y_train[train_indices]
-                X_test_fold, y_test_fold = X_train[validation_indices], y_train[validation_indices]
+                X_validation_fold, y_validation_fold = X_train[validation_indices], y_train[validation_indices]
 
                 for epoch in range(number_epochs):
                     _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
 
                 # Evaluation
-                # pred = tf.nn.softmax(neural_network)  # Apply softmax to logits
-                # estimated_class = tf.argmax(pred, axis=1)
                 pred = neural_network
 
-                #accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-                accuracy = tf.keras.losses.MSE(pred, Y)
-                #accuracy = tf.keras.losses.MSE(neural_network.eval({X: X_test_fold}), y_test_fold)
-                #print(f'Correct predictions: {sess.run(correct_prediction, feed_dict={X: X_test_fold}).sum()} '
-                #      f'out of {len(y_test_fold)}')
+                accuracy = self.root_mean_squared_error(pred, Y)
 
-                print(f'Accuracy: {np.mean(accuracy.eval({X: X_test_fold, Y: y_test_fold}))}')
+                print(f'RMSE: {accuracy.eval({X: X_validation_fold, Y: y_validation_fold})}')
                 print(f"Cost: {c}")
-                validation_data_accuracies.append(np.mean(accuracy.eval({X: X_test_fold, Y: y_test_fold})))
+                validation_data_accuracies.append(np.mean(accuracy.eval({X: X_validation_fold, Y: y_validation_fold})))
                 validation_data_costs.append(c)
 
             # Evaluation - training data
-            print(f'\nK-Fold accuracy: {validation_data_accuracies}')
-            print(f'Average K-Fold accuracy: {np.mean(validation_data_accuracies)}')
+            print(f'\nK-Fold RMSE: {validation_data_accuracies}')
+            print(f'Average K-Fold RMSE: {np.mean(validation_data_accuracies)}')
 
             # Evaluation - test data
-            accuracy = tf.keras.losses.MSE(pred, Y)
-
             print('\nEvaluation of test data')
-            print(f'Accuracy: {np.mean(accuracy.eval({X: X_test, Y: y_test}))}')
+            accuracy = self.root_mean_squared_error(pred, Y)
+            print(f'RMSE: {accuracy.eval({X: X_test, Y: y_test})}')
 
+
+    def root_mean_squared_error(self, y_true, y_pred):
+        return tf.keras.backend.sqrt(tf.keras.backend.mean(tf.keras.backend.square(y_pred - y_true)))
 
     def generate_summary(self, X_placeholder, Y_placeholder, X_values, y_values, accuracy, neural_network, session):
         result = pd.DataFrame()
