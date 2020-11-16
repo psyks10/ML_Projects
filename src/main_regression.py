@@ -5,14 +5,11 @@ import zipfile
 
 import requests
 
-#import functions.logger as logger
 import numpy as np
 import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, KFold, cross_val_score
-
-from src.main_classification import TensorFlow
 
 
 class TensorFlow():
@@ -27,12 +24,13 @@ class TensorFlow():
         # Network parameters
         n_hidden1 = 10
         n_hidden2 = 10
+        n_hidden3 = 10
         n_input = 16
         n_output = 1
 
         # Learning parameters
         learning_constant = 0.02
-        number_epochs = 2000
+        number_epochs = 1000
         batch_size = 50
 
         # Defining the input and the output
@@ -45,15 +43,19 @@ class TensorFlow():
         self.b1 = tf.Variable(tf.random_normal([n_hidden1]))
         # Biases second hidden layer
         self.b2 = tf.Variable(tf.random_normal([n_hidden2]))
+        # Biases third layer
+        self.b3 = tf.Variable(tf.random_normal([n_hidden3]))
         # Biases output layer
-        self.b3 = tf.Variable(tf.random_normal([n_output]))
+        self.b4 = tf.Variable(tf.random_normal([n_output]))
 
         # Weights connecting input layer with first hidden layer
         self.w1 = tf.Variable(tf.random_normal([n_input, n_hidden1]))
         # Weights connecting first hidden layer with second hidden layer
         self.w2 = tf.Variable(tf.random_normal([n_hidden1, n_hidden2]))
-        # Weights connecting second hidden layer with output layer
-        self.w3 = tf.Variable(tf.random_normal([n_hidden2, n_output]))
+        # Weights connecting second hidden layer with third layer
+        self.w3 = tf.Variable(tf.random_normal([n_hidden2, n_hidden3]))
+        # Weights connecting third hidden layer with output layer
+        self.w4 = tf.Variable(tf.random_normal([n_hidden3, n_output]))
 
         # Create model
         neural_network = self.multilayer_perceptron(X)
@@ -99,14 +101,21 @@ class TensorFlow():
                 validation_data_accuracies.append(np.mean(accuracy.eval({X: X_validation_fold, Y: y_validation_fold})))
                 validation_data_costs.append(c)
 
+
             # Evaluation - training data
             print(f'\nK-Fold RMSE: {validation_data_accuracies}')
             print(f'Average K-Fold RMSE: {np.mean(validation_data_accuracies)}')
+
 
             # Evaluation - test data
             print('\nEvaluation of test data')
             accuracy = self.root_mean_squared_error(pred, Y)
             print(f'RMSE: {accuracy.eval({X: X_test, Y: y_test})}')
+
+            # plt.plot(y_test[0:10], 'ro', pred.eval({X:X_test})[0:10], 'bo')
+            # plt.ylabel('some numbers')
+            # plt.show()
+
 
     def root_mean_squared_error(self, y_true, y_pred):
         return tf.keras.backend.sqrt(tf.keras.backend.mean(tf.keras.backend.square(y_pred - y_true)))
@@ -144,8 +153,7 @@ class TensorFlow():
         X_data = self.data.drop('NObeyesdad', axis=1)
 
         # Encode the label
-        d = {'Insufficient_Weight': 0, 'Normal_Weight': 1, 'Overweight_Level_I': 2, 'Overweight_Level_II': 3,
-             'Obesity_Type_I': 4, 'Obesity_Type_II': 5, 'Obesity_Type_III': 6}
+        d = {'Insufficient_Weight':0, 'Normal_Weight':1, 'Overweight_Level_I':2, 'Overweight_Level_II':3, 'Obesity_Type_I':4, 'Obesity_Type_II':5, 'Obesity_Type_III':6}
         y_data['NObeyesdad'] = y_data['NObeyesdad'].map(d)
 
         # Encoding categorical features
@@ -168,13 +176,16 @@ class TensorFlow():
         layer_1 = tf.nn.sigmoid(tf.add(tf.matmul(input_d, self.w1), self.b1))
         # Task of neurons of second hidden layer
         layer_2 = tf.nn.sigmoid(tf.add(tf.matmul(layer_1, self.w2), self.b2))
+        # Task of neurons of third hidden layer
+        layer_3 = tf.nn.sigmoid(tf.add(tf.matmul(layer_2, self.w3), self.b3))
         # Task of neurons of output layer
-        out_layer = tf.add(tf.matmul(layer_2, self.w3), self.b3)
+        out_layer = tf.add(tf.matmul(layer_3, self.w4), self.b4)
 
         return out_layer
 
-    if __name__ == "__main__":
-        try:
-            TensorFlow()
-        except Exception as e:
-            raise e
+
+if __name__ == "__main__":
+    try:
+        TensorFlow()
+    except Exception as e:
+        raise e
