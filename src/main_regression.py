@@ -23,15 +23,14 @@ class TensorFlow():
 
         # Network parameters
         n_hidden1 = 10
-        n_hidden2 = 10
+        n_hidden2 = 11
         n_hidden3 = 10
         n_input = 16
         n_output = 1
 
         # Learning parameters
-        learning_constant = 0.02
-        number_epochs = 1000
-        batch_size = 50
+        learning_constant = 0.1
+        number_epochs = 2000
 
         # Defining the input and the output
         X = tf.placeholder("float", [None, n_input], name="X")
@@ -78,9 +77,44 @@ class TensorFlow():
             validation_data_accuracies = []
             validation_data_costs = []
 
+            # Hyper-parameter Tuning
+            batch_learning_constant = learning_constant
+            rmse = None
+            batch_size = 50
+            i = 0
+            while i < len(X_train):
+                # split x_train into batches
+                x_batch = X_train[i:i + batch_size]
+                y_batch = y_train[i:i + batch_size]
+
+                batch_optimizer = tf.train.GradientDescentOptimizer(batch_learning_constant).minimize(loss_op)
+                _, batch_cost = sess.run([batch_optimizer, loss_op], feed_dict={X: x_batch, Y: y_batch})
+
+                # get root mean square error
+                b_rmse = self.root_mean_squared_error(y_batch, neural_network)
+                batch_rmse = b_rmse.eval({X: x_batch, Y: y_batch})
+
+                if rmse is None:
+                    rmse = batch_rmse
+                elif batch_learning_constant >= 0.001:
+                    print("Batch RMSE: ", batch_rmse)
+                    print("Batch learning constant: ", batch_learning_constant)
+                    if batch_rmse < rmse:
+                        rmse = batch_rmse
+                        learning_constant = batch_learning_constant
+                        optimizer = batch_optimizer
+                else:
+                    break
+                batch_learning_constant /= 10
+                batch_learning_constant = round(batch_learning_constant, 3)
+                i += batch_size
+
+            print("Selected learning constant: ", learning_constant)
+
             # K-Fold
             k_fold = KFold(n_splits=10, random_state=self.seed)
             i = 0
+
             for train_indices, validation_indices in k_fold.split(X_train):
                 i += 1
                 print(f"\nFold no. {i}")
@@ -89,11 +123,10 @@ class TensorFlow():
                 X_validation_fold, y_validation_fold = X_train[validation_indices], y_train[validation_indices]
 
                 for epoch in range(number_epochs):
-                    _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
+                     _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
 
                 # Evaluation
                 pred = neural_network
-
                 accuracy = self.root_mean_squared_error(pred, Y)
 
                 print(f'RMSE: {accuracy.eval({X: X_validation_fold, Y: y_validation_fold})}')
@@ -106,18 +139,18 @@ class TensorFlow():
             print(f'\nK-Fold RMSE: {validation_data_accuracies}')
             print(f'Average K-Fold RMSE: {np.mean(validation_data_accuracies)}')
 
-
             # Evaluation - test data
             print('\nEvaluation of test data')
             accuracy = self.root_mean_squared_error(pred, Y)
             print(f'RMSE: {accuracy.eval({X: X_test, Y: y_test})}')
 
-            # plt.plot(y_test[0:10], 'ro', pred.eval({X:X_test})[0:10], 'bo')
-            # plt.ylabel('some numbers')
-            # plt.show()
+            plt.plot(y_test[0:100], 'ro', pred.eval({X: X_test})[0:100], 'bo')
+            plt.ylabel('Level of Obesity')
+            plt.xlabel('Data Points')
+            plt.show()
 
 
-    def root_mean_squared_error(self, y_true, y_pred):
+    def root_mean_squared_error(self, y_pred, y_true):
         return tf.keras.backend.sqrt(tf.keras.backend.mean(tf.keras.backend.square(y_pred - y_true)))
 
     def generate_summary(self, X_placeholder, Y_placeholder, X_values, y_values, accuracy, neural_network, session):
@@ -136,7 +169,7 @@ class TensorFlow():
 
         # Download zip file into folder 'data' and extract files
         zipfile.ZipFile(io.BytesIO(requests.get(path + file).content)).extractall("data")
-        self.data = pd.read_csv('data/ObesityDataSet_raw_and_data_sinthetic.csv', skiprows=1, sep=',',
+        data = pd.read_csv('data/ObesityDataSet_raw_and_data_sinthetic.csv', skiprows=1, sep=',',
                                 names=["Gender", "Age", "Height", "Weight", "family_history_with_overweight", "FAVC",
                                        "FCVC", "NCP", "CAEC", "SMOKE", "CH2O", "SCC", "FAF", "TUE", "CALC", "MTRANS",
                                        "NObeyesdad"])
@@ -149,8 +182,8 @@ class TensorFlow():
             print("Error: %s : %s" % (dir_path, e.strerror))
 
         # Separate features and label
-        y_data = pd.DataFrame(self.data['NObeyesdad'])
-        X_data = self.data.drop('NObeyesdad', axis=1)
+        y_data = pd.DataFrame(data['NObeyesdad'])
+        X_data = data.drop('NObeyesdad', axis=1)
 
         # Encode the label
         d = {'Insufficient_Weight':0, 'Normal_Weight':1, 'Overweight_Level_I':2, 'Overweight_Level_II':3, 'Obesity_Type_I':4, 'Obesity_Type_II':5, 'Obesity_Type_III':6}
