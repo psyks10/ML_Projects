@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6bcf1a73-2ba8-4929-ab9b-79478281bd9a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main_regression_k_fold.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main_regression_k_fold.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="regression" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="JupyterTrust" id="aa97ca05-0490-4915-9414-f6927e2fd9bd" />
+  <component name="ProjectId" id="1jbmGgqawu1Dib7Rb9yuY1hRS3F" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_regression_k_fold" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/opt/anaconda3/envs/mle_tf/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main_regression_k_fold.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main_regression_k_fold" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6bcf1a73-2ba8-4929-ab9b-79478281bd9a" name="Default Changelist" comment="" />
+      <created>1604081071807</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604081071807</updated>
+      <workItem from="1604081073807" duration="77000" />
+      <workItem from="1604325791475" duration="4869000" />
+      <workItem from="1604340207448" duration="8000" />
+      <workItem from="1604678871489" duration="4954000" />
+      <workItem from="1604684072451" duration="1657000" />
+      <workItem from="1604766683747" duration="3079000" />
+      <workItem from="1604779343130" duration="1321000" />
+      <workItem from="1604938787829" duration="360000" />
+      <workItem from="1605280581555" duration="7506000" />
+      <workItem from="1605366447686" duration="4147000" />
+      <workItem from="1605445434859" duration="1149000" />
+      <workItem from="1605481156634" duration="1725000" />
+      <workItem from="1605524582839" duration="635000" />
+      <workItem from="1605525574097" duration="1563000" />
+      <workItem from="1605537268204" duration="349000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="304" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604683034693">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="304" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1604683034693" />
+    <state x="527" y="133" key="#main_regression_k_fold" timestamp="1605525738354">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="527" y="133" key="#main_regression_k_fold/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1605525738354" />
+    <state width="1638" height="494" key="GridCell.Tab.0.bottom" timestamp="1605537523239">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="494" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1605537523239" />
+    <state width="1638" height="724" key="GridCell.Tab.0.bottom/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@-2560.-650.2560.1417" timestamp="1605373250333" />
+    <state width="1321" height="297" key="GridCell.Tab.0.bottom/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1605527236713" />
+    <state width="1321" height="449" key="GridCell.Tab.0.bottom/1680.-633.2560.1440/-2560.-673.2560.1440/0.0.1680.1050@-2560.-673.2560.1440" timestamp="1605482912202" />
+    <state width="1638" height="494" key="GridCell.Tab.0.center" timestamp="1605537523238">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="494" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1605537523238" />
+    <state width="1638" height="724" key="GridCell.Tab.0.center/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@-2560.-650.2560.1417" timestamp="1605373250332" />
+    <state width="1321" height="297" key="GridCell.Tab.0.center/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1605527236712" />
+    <state width="1321" height="449" key="GridCell.Tab.0.center/1680.-633.2560.1440/-2560.-673.2560.1440/0.0.1680.1050@-2560.-673.2560.1440" timestamp="1605482912200" />
+    <state width="1638" height="494" key="GridCell.Tab.0.left" timestamp="1605537523238">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="494" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1605537523238" />
+    <state width="1638" height="724" key="GridCell.Tab.0.left/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@-2560.-650.2560.1417" timestamp="1605373250332" />
+    <state width="1321" height="297" key="GridCell.Tab.0.left/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1605527236712" />
+    <state width="1321" height="449" key="GridCell.Tab.0.left/1680.-633.2560.1440/-2560.-673.2560.1440/0.0.1680.1050@-2560.-673.2560.1440" timestamp="1605482912200" />
+    <state width="1638" height="494" key="GridCell.Tab.0.right" timestamp="1605537523239">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1638" height="494" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1605537523239" />
+    <state width="1638" height="724" key="GridCell.Tab.0.right/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@-2560.-650.2560.1417" timestamp="1605373250332" />
+    <state width="1321" height="297" key="GridCell.Tab.0.right/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1605527236713" />
+    <state width="1321" height="449" key="GridCell.Tab.0.right/1680.-633.2560.1440/-2560.-673.2560.1440/0.0.1680.1050@-2560.-673.2560.1440" timestamp="1605482912201" />
+    <state x="168" y="115" key="MergeDialog" timestamp="1604684615962">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="168" y="115" key="MergeDialog/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1604684615962" />
+    <state x="551" y="259" key="MultipleFileMergeDialog" timestamp="1604684874440">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="551" y="259" key="MultipleFileMergeDialog/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1604684874440" />
+    <state x="341" y="164" key="SettingsEditor" timestamp="1604326658917">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="341" y="164" key="SettingsEditor/1680.-633.2560.1440/-2560.-673.2560.1440/0.0.1680.1050@0.0.1680.1050" timestamp="1604326658917" />
+    <state x="239" y="123" width="1163" height="827" key="com.intellij.dvcs.ui.CompareBranchesDialog" timestamp="1605525738841">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="239" y="123" width="1163" height="827" key="com.intellij.dvcs.ui.CompareBranchesDialog/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1605525738841" />
+    <state x="517" y="372" key="com.intellij.ide.util.TipDialog" timestamp="1605537268190">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="517" y="372" key="com.intellij.ide.util.TipDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1605537268190" />
+    <state x="-1772" y="-168" key="com.intellij.ide.util.TipDialog/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@-2560.-650.2560.1417" timestamp="1605481157736" />
+    <state x="517" y="372" key="com.intellij.ide.util.TipDialog/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1605525573677" />
+    <state x="-1772" y="-183" key="com.intellij.ide.util.TipDialog/1680.-633.2560.1440/-2560.-673.2560.1440/0.0.1680.1050@-2560.-673.2560.1440" timestamp="1605524589416" />
+    <state x="517" y="357" key="com.intellij.ide.util.TipDialog/1680.-633.2560.1440/-2560.-673.2560.1440/0.0.1680.1050@0.0.1680.1050" timestamp="1604325792656" />
+    <state x="380" y="256" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604684867265">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="380" y="256" key="git4idea.branch.GitSmartOperationDialog/1680.-610.2560.1417/-2560.-650.2560.1417/0.23.1680.1027@0.23.1680.1027" timestamp="1604684867265" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/COMP3009_TeamMatrix$main_regression.coverage" NAME="main_regression Coverage Results" MODIFIED="1605525277608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/COMP3009_TeamMatrix$main_regression_k_fold.coverage" NAME="main_regression_k_fold Coverage Results" MODIFIED="1605537523228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/COMP3009_TeamMatrix$main_classification.coverage" NAME="main_classification Coverage Results" MODIFIED="1604683689132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+  </component>
+</project>
