@@ -6,6 +6,7 @@ import tensorflow as tf
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, KFold, cross_val_score
+from sklearn.metrics import confusion_matrix, fbeta_score
 
 
 class TensorFlow():
@@ -18,15 +19,14 @@ class TensorFlow():
         tf.set_random_seed(self.seed)
 
         # Network parameters
-        n_hidden1 = 10
-        n_hidden2 = 10
+        n_hidden1 = 15
+        n_hidden2 = 15
         n_input = 9
         n_output = 2
 
         # Learning parameters
-        learning_constant = 0.03
-        number_epochs = 2000
-        batch_size = 50
+        learning_constant = 0.05
+        number_epochs = 1000
 
         # Defining the input and the output
         X = tf.placeholder("float", [None, n_input], name="X")
@@ -52,7 +52,6 @@ class TensorFlow():
         neural_network = self.multilayer_perceptron(X)
 
         # Define loss and optimizer
-        # loss_op = tf.reduce_mean(tf.math.squared_difference(neural_network, Y))
         loss_op = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=neural_network, labels=Y))
         optimizer = tf.train.GradientDescentOptimizer(learning_constant).minimize(loss_op)
 
@@ -66,10 +65,47 @@ class TensorFlow():
 
             sess.run(init)
 
+            training_data_costs = []
+
             validation_data_accuracies = []
             validation_data_costs = []
 
+            ##################################
+            # Normal split- Used for experimenting with hyperparameters
+            ##################################
+            # method = 'Normal split'
+            #
+            # # Split data in Training 70%, Validation 30%
+            # X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=self.seed)
+            #
+            # for epoch in range(number_epochs):
+            #
+            #     if epoch % 100 == 0:
+            #         print(f"\nEpoch no. {epoch}")
+            #
+            #     _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train, Y: y_train})
+            #     training_data_costs.append(c)
+            #
+            #     # Evaluation
+            #     pred = tf.nn.softmax(neural_network)  # Apply softmax to logits
+            #     estimated_class = tf.argmax(pred, axis=1)
+            #     correct_prediction = tf.equal(tf.argmax(pred, axis=1), pd.DataFrame(y_val).idxmax(axis=1).values)
+            #
+            #     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+            #     if epoch % 100 == 0:
+            #         print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_val})}')
+            #         print(f'Correct predictions: {sess.run(correct_prediction, feed_dict={X: X_val}).sum()} '
+            #               f'out of {len(y_val)}')
+            #         print(f'Accuracy: {accuracy.eval({X: X_val})}')
+            #         print(f"Cost: {c}")
+            #     validation_data_accuracies.append(accuracy.eval({X: X_val}))
+            #     validation_data_costs.append(loss_op.eval({X: X_val, Y: y_val}))
+
+            ##################################
             # K-Fold
+            ##################################
+            method = 'K-Fold'
+
             k_fold = KFold(n_splits=10, random_state=self.seed)
             i = 0
             for train_indices, validation_indices in k_fold.split(X_train):
@@ -81,24 +117,43 @@ class TensorFlow():
 
                 for epoch in range(number_epochs):
                     _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
+                training_data_costs.append(c)
 
-                # Evaluation
+                # Evaluation - Validation data
                 pred = tf.nn.softmax(neural_network)  # Apply softmax to logits
                 estimated_class = tf.argmax(pred, axis=1)
                 correct_prediction = tf.equal(tf.argmax(pred, axis=1), pd.DataFrame(y_validation_fold).idxmax(axis=1).values)
 
                 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-                print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_validation_fold})}')
+                y_true = pd.DataFrame(y_validation_fold).idxmax(axis=1).values
+                y_pred = sess.run(estimated_class, feed_dict={X: X_validation_fold})
+                print(f'Correct Class: {y_true}')
+                print(f'Class prediction: {y_pred}')
                 print(f'Correct predictions: {sess.run(correct_prediction, feed_dict={X: X_validation_fold}).sum()} '
                       f'out of {len(y_validation_fold)}')
                 print(f'Accuracy: {accuracy.eval({X: X_validation_fold})}')
                 print(f"Cost: {c}")
+                tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
+                print(f'True negatives: {tn}\nFalse positives: {fp}\nFalse negatives: {fn}\nTrue positives: {tp}')
+                print(f'F1 Score (beta = 1): {fbeta_score(y_true, y_pred, 1)}')
+                print(f'F1 Score (beta = 2): {fbeta_score(y_true, y_pred, 2)}')
                 validation_data_accuracies.append(accuracy.eval({X: X_validation_fold}))
-                validation_data_costs.append(c)
+                validation_data_costs.append(loss_op.eval({X: X_validation_fold, Y: y_validation_fold}))
 
-            # Evaluation - training data
-            print(f'\nK-Fold accuracy: {validation_data_accuracies}')
-            print(f'Average K-Fold accuracy: {np.mean(validation_data_accuracies)}')
+            # Evaluation - Training data
+            print(f'\n{method} accuracy: {validation_data_accuracies}')
+            print(f'Average {method} accuracy: {np.mean(validation_data_accuracies)}')
+            print(f'Average {method} cost: {np.mean(validation_data_costs)}')
+            print(f'Last {method} accuracy: {validation_data_accuracies[-1]}')
+            print(f'Last {method} cost: {validation_data_costs[-1]}')
+
+            plt.plot(validation_data_costs, 'b.', label="Validation")
+            plt.plot(training_data_costs, 'r.', label="Training")
+            plt.title(f'Cost per Epoch - Learning Rate: {learning_constant}')
+            plt.xlabel('Epoch')
+            plt.ylabel('Cost')
+            plt.legend(loc="upper right")
+            plt.show()
 
             # Evaluation - test data
             estimated_class = tf.argmax(pred, axis=1)
@@ -106,20 +161,19 @@ class TensorFlow():
             accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
             print('\nEvaluation of test data')
-            print(f'Class estimation: {sess.run(estimated_class, feed_dict={X: X_test})}')
+            y_true = pd.DataFrame(y_test).idxmax(axis=1).values
+            y_pred = sess.run(estimated_class, feed_dict={X: X_test})
+            print(f'Correct Class: {y_true}')
+            print(f'Class prediction: {y_pred}')
             print(f'Correct predictions: {sess.run(correct_prediction, feed_dict={X: X_test}).sum()} '
                   f'out of {len(X_test)}')
             print(f'Accuracy: {accuracy.eval({X: X_test})}')
-
-
-    def generate_summary(self, X_placeholder, Y_placeholder, X_values, y_values, accuracy, neural_network, session):
-        result = pd.DataFrame()
-        result['label'] = pd.DataFrame(y_values).idxmax(axis=1).values
-        result['label_encoded'] = list(y_values)
-        result['output'] = list(neural_network.eval({X_placeholder: X_values}))
-        result['prediction'] = list(session.run(tf.argmax(neural_network, axis=1), feed_dict={X_placeholder: X_values}))
-        result['accuracy'] = list(accuracy.eval({X_placeholder: X_values, Y_placeholder: y_values}))
-        return result
+            print(f'Cost: {loss_op.eval({X: X_test, Y: y_test})}')
+            print(f'Confusion matrix:\n {confusion_matrix(y_true, y_pred, labels=[0,1])}')
+            tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
+            print(f'True negatives: {tn}\nFalse positives: {fp}\nFalse negatives: {fn}\nTrue positives: {tp}')
+            print(f'F1 Score (beta = 1): {fbeta_score(y_true, y_pred, 1)}')
+            print(f'F1 Score (beta = 2): {fbeta_score(y_true, y_pred, 2)}')
 
     def load_breast_cancer_data(self):
         # Load data
