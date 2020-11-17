@@ -139,12 +139,12 @@ class TensorFlow():
                 accuracy = self.root_mean_squared_error(pred, Y)
 
                 print(f'RMSE: {accuracy.eval({X: X_validation_fold, Y: y_validation_fold})}')
-                print(f"Cost: {c}")
+                print(f"Cost: {loss_op.eval({X: X_validation_fold, Y: y_validation_fold})}")
                 validation_data_accuracies.append(np.mean(accuracy.eval({X: X_validation_fold, Y: y_validation_fold})))
-                validation_data_costs.append(c)
+                validation_data_costs.append(loss_op.eval({X: X_validation_fold, Y: y_validation_fold}))
 
 
-            # Evaluation - training data
+            # Evaluation - Validation data
             print(f'\nK-Fold RMSE: {validation_data_accuracies}')
             print(f'Average K-Fold RMSE: {np.mean(validation_data_accuracies)}')
 
