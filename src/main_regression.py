@@ -61,7 +61,6 @@ class TensorFlow():
 
         # Define loss and optimizer
         loss_op = tf.reduce_mean(tf.math.squared_difference(neural_network, Y))
-        # loss_op = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=neural_network, labels=Y))
         optimizer = tf.train.GradientDescentOptimizer(learning_constant).minimize(loss_op)
 
         # Initializing the variables
@@ -122,8 +121,18 @@ class TensorFlow():
                 X_train_fold, y_train_fold = X_train[train_indices], y_train[train_indices]
                 X_validation_fold, y_validation_fold = X_train[validation_indices], y_train[validation_indices]
 
+                prev_epoch_rmse = None
                 for epoch in range(number_epochs):
-                     _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
+                    _, c = sess.run([optimizer, loss_op], feed_dict={X: X_train_fold, Y: y_train_fold})
+                    if epoch % 500 == 0:
+                        epoch_rmse = self.root_mean_squared_error(neural_network, Y)
+                        epoch_rmse_eval = epoch_rmse.eval({X: X_validation_fold, Y: y_validation_fold})
+                        if prev_epoch_rmse is not None and epoch_rmse_eval > prev_epoch_rmse:
+                            print("epoch number: ", epoch, " prev epoch validation RMSE: ", prev_epoch_rmse,
+                                  " current epoch validation RMSE: ", epoch_rmse_eval)
+                            break
+                        prev_epoch_rmse = epoch_rmse_eval
+
 
                 # Evaluation
                 pred = neural_network
@@ -149,30 +158,20 @@ class TensorFlow():
             plt.xlabel('Data Points')
             plt.show()
 
-
+    # noinspection PyMethodMayBeStatic
     def root_mean_squared_error(self, y_pred, y_true):
         return tf.keras.backend.sqrt(tf.keras.backend.mean(tf.keras.backend.square(y_pred - y_true)))
 
-    def generate_summary(self, X_placeholder, Y_placeholder, X_values, y_values, accuracy, neural_network, session):
-        result = pd.DataFrame()
-        result['label'] = pd.DataFrame(y_values).idxmax(axis=1).values
-        result['label_encoded'] = list(y_values)
-        result['output'] = list(neural_network.eval({X_placeholder: X_values}))
-        result['prediction'] = list(session.run(tf.argmax(neural_network, axis=1), feed_dict={X_placeholder: X_values}))
-        result['accuracy'] = list(accuracy.eval({X_placeholder: X_values, Y_placeholder: y_values}))
-        return result
-
     def load_obesity_data(self):
-
         file = 'ObesityDataSet_raw_and_data_sinthetic%20%282%29.zip'
         path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00544/'
 
         # Download zip file into folder 'data' and extract files
         zipfile.ZipFile(io.BytesIO(requests.get(path + file).content)).extractall("data")
         data = pd.read_csv('data/ObesityDataSet_raw_and_data_sinthetic.csv', skiprows=1, sep=',',
-                                names=["Gender", "Age", "Height", "Weight", "family_history_with_overweight", "FAVC",
-                                       "FCVC", "NCP", "CAEC", "SMOKE", "CH2O", "SCC", "FAF", "TUE", "CALC", "MTRANS",
-                                       "NObeyesdad"])
+                           names=["Gender", "Age", "Height", "Weight", "family_history_with_overweight", "FAVC",
+                                  "FCVC", "NCP", "CAEC", "SMOKE", "CH2O", "SCC", "FAF", "TUE", "CALC", "MTRANS",
+                                  "NObeyesdad"])
 
         # After extracting data from csv delete folder 'data'
         dir_path = 'data'
