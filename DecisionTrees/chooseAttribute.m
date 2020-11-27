@@ -5,9 +5,9 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
 
     % Label is the first column in dataset
     dataset = horzcat(labels, features);
-    uniqueLabels = unique(labels);
+    uniqueLabels = unique(labels.class);
 
-    totalExamples = length(labels);
+    totalExamples = height(labels);
     
     % Intialise to -1 so we know if something has gone wrong
     bestInformationGain = -1;
@@ -18,14 +18,18 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
     positiveRatio = positives/totalExamples;
     negativeRatio = 1 - positiveRatio;
     datasetEntropy = calculateEntropy(positiveRatio, negativeRatio);
-
+    
+    width(features) 
     % Iterate through attributes to calculate information gain values
     for currentAttribute = 1:width(features) 
         
+        currentAttribute
+        
         % Isolate selected attribute and get unique values
         % attribute = features(:,feature); 
-        uniqueValues = unique(features(:,currentAttribute));
-                
+        uniqueValues = table2cell(unique(features(:,currentAttribute)));
+        uniqueValues
+       
         valuesEntropies = {length(uniqueValues),1};
         valuesInformationEntropies = {length(uniqueValues),1};
         
@@ -33,16 +37,20 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
         for currentValue = 1:length(uniqueValues)
             
             % Get rows where currentAttribute == currentValue
+            % This is not working
             indexesToSubset = strcmp(features(:,currentAttribute),string(currentValue));
             subset = dataset(indexesToSubset,:);
             
             % All positives and negatives in the subsets
             positives = nnz(strcmp(subset(:,1), uniqueLabels{1}));
-            negatives = length(subset) - positives;
+            negatives = height(subset) - positives;
             
             % Ratios
-            positiveRatio = positives/length(subset);
+            positiveRatio = positives/height(subset);
             negativeRatio = 1 - positiveRatio;
+            
+            positiveRatio
+            negativeRatio
             
             % Calculate entropy and information entropy for this value
             entropy = calculateEntropy(positiveRatio, negativeRatio);
@@ -65,6 +73,6 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
         end
         
     end
-    
+    bestAttribute
 end
 

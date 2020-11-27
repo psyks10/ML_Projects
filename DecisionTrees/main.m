@@ -5,13 +5,21 @@ breastCancer = deblank(breastCancer);
 breastCancer = splitlines(breastCancer);
 breastCancer = regexp(breastCancer, ',+', 'split');
 breastCancer = vertcat(breastCancer{:});
-clear options
-
+breastCancer = cell2table(breastCancer, 'VariableNames', {'class', 'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'});
+% Convert all columns to categorical
 % Handle missing values
+% Fix this
 for feature = 1:width(breastCancer)
     indexes = strcmp(breastCancer(:,feature),'?');
     breastCancer(indexes,:) = []; 
 end
+breastCancer.Properties.VariableNames = {'class', 'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'};
+clear options
+
+% Counter
+global counter;
+counter = 0;
+
 
 % set up seed for random permutation (randperm) to use
 seed = 101;
@@ -27,7 +35,9 @@ labels = dataBC(:,1);
 features = dataBC(:,2:10);
 
 % create cell array of attribute IDs (feature names)
-% attributeIDs = {'class', 'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'};
+global attributeNames;
+attributeNames = containers.Map({1,2,3,4,5,6,7,8,9}, {'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'});
+% attributeNames = {'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'};
 
 % We need to now build the tree
 decisionTree = decisionTreeLearning(features, labels);
