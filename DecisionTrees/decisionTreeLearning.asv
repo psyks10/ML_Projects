@@ -7,7 +7,8 @@ function decisionTree = decisionTreeLearning(features, labels)
     % If number of unique labels is 1 then everything has the same label, we
     % return the only label
     if numel(unique(string(labels.class))) == 1
-        decisionTree = struct('op', '', 'kids', [], 'prediction', unique(string(labels.class)), 'attribute', '', 'threshold', '');
+        horzcat(features,labels)
+        decisionTree = struct('op', '', 'kids', [], 'prediction', unique(string(labels)), 'attribute', '', 'threshold', '');
         return;
     end
     
@@ -39,15 +40,12 @@ function decisionTree = decisionTreeLearning(features, labels)
     leftKidLabels = labels(indexesToSubset,:);
     
     % delete rows at indexesToSubset
-    rightKidFeatures = features(~indexesToSubset,:);
-    rightKidLabels = labels(~indexesToSubset,:);
+    rightKidFeatures = features;
+    rightKidFeatures(indexesToSubset,:)=[];
+    rightKidLabels = labels;
+    rightKidLabels(indexesToSubset,:)=[];
     
-%     rightKidFeatures = features;
-%     rightKidFeatures(indexesToSubset,:)=[];
-%     rightKidLabels = labels;
-%     rightKidLabels(indexesToSubset,:)=[];
-    
-    decisionTree.kids = cell(1,2);
+    decisionTree.kids = cell(2,1);
     % only set kids if there are rows in the feature tables
     if height(leftKidFeatures)~=0
         decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels); 

@@ -70,11 +70,5 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
         end
         
     end
-    
-    if bestAttribute == -1
-        bestAttribute = 1;
-        bestThreshold = bestThresholds{bestAttribute};
-    end
-    
 end
 
