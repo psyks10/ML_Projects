@@ -11,8 +11,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
     
     % Intialise to -1 so we know if something has gone wrong
     bestInformationGain = -1;
-    bestAttribute = -1;
-    bestThreshold = -1; 
+    bestAttribute = 1; % Randomise?
     
     bestThresholds = {width(features),1};
     
@@ -59,22 +58,15 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
         averageInformationEntropy = sum([valuesInformationEntropies{:}]);
         informationGain = datasetEntropy - averageInformationEntropy;
         
-        [~,idx] = min([valuesInformationEntropies{:}]); % Get best threshold index 
-        bestThresholds{currentAttribute} = uniqueValues{idx}; % Get value for best threshold
+        [~,idx] = min([valuesInformationEntropies{:}]); % Get index of value with smallest information entropy
+        bestThresholds{currentAttribute} = uniqueValues{idx}; % Set value as best threshold
         
         if informationGain > bestInformationGain
             bestInformationGain = informationGain;
             bestAttribute = currentAttribute; % Column number
-            [~,idx] = min([valuesInformationEntropies{:}]); % Get best threshold index 
-            bestThreshold = uniqueValues{idx}; % Get value for best threshold
         end
         
     end
     
-    if bestAttribute == -1
-        bestAttribute = 1;
-        bestThreshold = bestThresholds{bestAttribute};
-    end
-    
+    bestThreshold = bestThresholds{bestAttribute};
 end
-

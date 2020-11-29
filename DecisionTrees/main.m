@@ -5,7 +5,6 @@ breastCancer = deblank(breastCancer);
 breastCancer = splitlines(breastCancer);
 breastCancer = regexp(breastCancer, ',+', 'split');
 breastCancer = vertcat(breastCancer{:});
-% Convert all columns to categorical
 
 % Handle missing values
 % Get rows in breastCancer with  values '?'
@@ -16,10 +15,6 @@ breastCancer(indices,:)=[];
 breastCancer = cell2table(breastCancer, 'VariableNames', {'class', 'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'});
 breastCancer.Properties.VariableNames = {'class', 'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'};
 clear options
-
-% Counter
-global counter;
-counter = 0;
 
 % set up seed for random permutation (randperm) to use
 seed = 101;
@@ -38,6 +33,8 @@ features = dataBC(:,2:10);
 global attributeNames;
 attributeNames = containers.Map({'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'}, {1,2,3,4,5,6,7,8,9});
 
-% We need to now build the tree
-decisionTree = decisionTreeLearning(features, labels);
+% We need to now build the tree, giving 1 as the class, meaning it's
+% classification
+decisionTree = decisionTreeLearning(features, labels, 1);
 
+DrawDecisionTree(decisionTree, 'Classification Tree');

@@ -1,31 +1,29 @@
-function decisionTree = decisionTreeLearning(features, labels)
+function decisionTree = decisionTreeLearning(features, labels, class)
        
     global counter;
     counter = counter+1;
     
-    
     % If number of unique labels is 1 then everything has the same label, we
     % return the only label
-    if numel(unique(string(labels.class))) == 1
-        decisionTree = struct('op', '', 'kids', [], 'prediction', unique(string(labels.class)), 'attribute', '', 'threshold', '');
+    %decisionTree = struct('op', '', 'kids', cell(1,2), 'prediction', unique(string(labels.class)), 'attribute', '', 'threshold', '');
+    if numel(unique(string(labels.class))) == 1 || isempty(features)
+        decisionTree.prediction = unique(string(labels.class));
+        decisionTree.op = "";
+        decisionTree.kids = [];
+        decisionTree.attribute = "";
+        decisionTree.threshold = "";
+        decisionTree.class = class;
         return;
     end
     
     % Initialise the tree
-    decisionTree = struct('op', [], 'kids', [], 'prediction', [], 'attribute', [], 'threshold', []);
+    decisionTree = struct('op', [], 'kids', [], 'prediction', [], 'attribute', [], 'threshold', [], 'class', class);
 
-    % Else wet the attribute and threshold to use for splitting the node
+    % Else get the attribute and threshold to use for splitting the node
     [bestAttribute, bestThreshold] = chooseAttribute(features, labels);
     
-    % if there is no best attribute return empty decisionTree
-    if bestAttribute==-1
-        decisionTree = [];
-        return
-    end
-    
     decisionTree.op = features.Properties.VariableNames{bestAttribute};
-    % Assign the attribute and threshold-values from the ID3 algorithm
-    % chooseAttribute() to the relevant fields of the tree-struct
+    % Assign the attribute and threshold-values from the ID3 algorithm chooseAttribute() to the relevant fields of the tree-struct
     % set attribute number using name in map
     global attributeNames
     decisionTree.attribute = attributeNames(decisionTree.op);
@@ -39,23 +37,14 @@ function decisionTree = decisionTreeLearning(features, labels)
     leftKidLabels = labels(indexesToSubset,:);
     
     % delete rows at indexesToSubset
-    rightKidFeatures = features(~indexesToSubset,:);
-    rightKidLabels = labels(~indexesToSubset,:);
+    rightKidFeatures = features;
+    rightKidFeatures(indexesToSubset,:)=[];
+    rightKidLabels = labels;
+    rightKidLabels(indexesToSubset,:)=[];
     
-%     rightKidFeatures = features;
-%     rightKidFeatures(indexesToSubset,:)=[];
-%     rightKidLabels = labels;
-%     rightKidLabels(indexesToSubset,:)=[];
-    
-    decisionTree.kids = cell(1,2);
     % only set kids if there are rows in the feature tables
-    if height(leftKidFeatures)~=0
-        decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels); 
-    end
-    if height(rightKidFeatures)~=0
-        decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels);
-    end
-    
-    % Set other fields of the tree-struct!
+    decisionTree.kids = cell(1,2);
+    decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels, class);
+    decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels, class);
     
 end
