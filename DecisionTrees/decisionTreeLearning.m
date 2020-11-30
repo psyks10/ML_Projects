@@ -12,31 +12,42 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
      end   
     
     % If number of unique labels is 1 we return the only label
-    if height(unique(labels.label)) == 1
-        prediction = unique(string(labels.label));
-        if string(prediction) == 'no-recurrence-events'
-            decisionTree.class = 0;
-        elseif string(prediction) == 'recurrence-events'
-            decisionTree.class = 1;
-        end
+    'unique labels'
+    height(unique(string(labels.label)))
+    'labels'
+    labels.label
+    if height(unique(string(labels.label))) == 1
+        decisionTree.class = mean(cell2mat(labels.label));
         return;
     end
     
-    % Else get the attribute and threshold to use for splitting the node
+    % Else get the attribute and threshold to use for splitting the node    
+    [bestAttribute, bestThreshold] = chooseAttribute(features, labels, treetype);
+
+
     % If bestAttribute == -1 there was no bestAttribute to choose
     % so we use the majority. If there is no majority we use the most
     % common class in the dataset.
-    [bestAttribute, bestThreshold] = chooseAttribute(features, labels);
     if bestAttribute == -1
-        positives = nnz(strcmp(labels.label, 'recurrence-events'));
-        negatives = height(labels) - positives;
-        if positives > negatives
-            decisionTree.class = 1;
+        
+        if treetype == 1
+            positives = nnz(cell2mat(labels.label));
+            positivesRatio = positives/height(labels);
+            if positivesRatio > 0.5
+                decisionTree.class = 1;
+            else
+                decisionTree.class = 0;
+            end
         else
-            decisionTree.class = 0;
+            average = mean(cell2mat(labels.label));
+            decisionTree.class = average;
         end
+        
         return;
+        
     end
+
+
     
     decisionTree.op = features.Properties.VariableNames{bestAttribute};
     % Assign the attribute and threshold-values from the ID3 algorithm chooseAttribute() to the relevant fields of the tree-struct
@@ -60,7 +71,7 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     
     % Generate kids subtrees
     decisionTree.kids = cell(1,2);
-    decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels);
-    decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels);
+    decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels, treetype);
+    decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels, treetype);
     
 end

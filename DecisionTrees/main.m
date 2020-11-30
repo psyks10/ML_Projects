@@ -29,7 +29,17 @@
 % % extract label-column from data set
 % labels = dataBC(:,1);
 % labels.Properties.VariableNames = {'label'}; 
-%
+% 
+% labelNames = {'no-recurrence-events', 'recurrence-events'};
+% 
+% labelNamesMap = containers.Map(labelNames, 0:length(labelNames)-1);
+% 
+% for labelIdx = 1:length(labelNames)
+%     value = labelNames{labelIdx};
+%     indices = strcmp(labels.label, value);
+%     labels.label(indices) = {labelNamesMap(value)};
+% end
+
 % % extract feature-columns from data set
 % features = dataBC(:,2:width(dataBC));
 % 
@@ -59,12 +69,6 @@ rmdir(file.folder, 's');
 clear folder
 clear zipUrl
 clear file
-% obesityData = regexp(obesityData, ',+', 'split');
-% obesityData = vertcat(obesityData{:});
-
-% Convert to table
-% colnames = obesityData(1,:);
-% obesityData = cell2table(obesityData(2:height(obesityData),:), 'VariableNames', colnames);
 
 % set up seed for random permutation (randperm) to use
 seed = 101;
@@ -98,18 +102,20 @@ numericalColumnsTruncate = {'Height'};
 for colIdx = 1:length(numericalColumnsTruncate)
     col = numericalColumnsTruncate{colIdx};
     features.(col) = fix(features.(col)*10)/10;
+    features.(col) = string(features.(col));
 end
 
 % Round to closest integer to generate bins
 for colIdx = 1:length(numericalColumnsNearestInt)
     col = numericalColumnsNearestInt{colIdx};
     features.(col) = round(features.(col));
+    features.(col) = string(features.(col));
 end
 
 % create cell array of attribute IDs (feature names)
 global attributeNames;
 colnames = features.Properties.VariableNames;
-attributeNames = containers.Map(colnames(:,1:width(features)-1), 1:width(features)-1);
+attributeNames = containers.Map(colnames, 1:width(features));
 
 % We need to now build the tree, giving 1 as the class, meaning it's
 % classification

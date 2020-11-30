@@ -44,7 +44,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
             % Get rows where currentAttribute == currentValue
             attrName = features.Properties.VariableNames{currentAttribute};
             % [indexesToSubset,~] = find(strcmp(table2cell(features(:,currentAttribute)),uniqueValues{currentValue}));
-            [indexesToSubset,~] = find(strcmp(features.(attrName),uniqueValues{currentValue}));
+            [indexesToSubset,~] = find(strcmp(table2cell(features(:,currentAttribute)),uniqueValues{currentValue}));
             if isempty(indexesToSubset)
                 indexesToSubset
             end
