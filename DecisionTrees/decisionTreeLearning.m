@@ -1,29 +1,25 @@
 function decisionTree = decisionTreeLearning(features, labels)
        
-    global counter;
-    counter = counter+1;
+    decisionTree.op = "";
+    decisionTree.kids = [];
+    decisionTree.attribute = "";
+    decisionTree.threshold = "";
     
-    % If number of unique labels is 1 then everything has the same label, we return the only label
+    % If number of unique labels is 1 we return the only label
     if height(unique(labels.class)) == 1
         prediction = unique(string(labels.class));
         if string(prediction) == 'no-recurrence-events'
             decisionTree.class = 0;
         elseif string(prediction) == 'recurrence-events'
             decisionTree.class = 1;
-        else
-            decisionTree.class = 3;
         end
-        decisionTree.op = "";
-        decisionTree.kids = [];
-        decisionTree.attribute = "";
-        decisionTree.threshold = "";
         return;
     end
     
-    % Initialise the tree
-    decisionTree = struct('op', [], 'kids', [], 'class', [], 'attribute', [], 'threshold', []);
-
     % Else get the attribute and threshold to use for splitting the node
+    % If bestAttribute == -1 there was no bestAttribute to choose
+    % so we use the majority. If there is no majority we use the most
+    % common class in the dataset.
     [bestAttribute, bestThreshold] = chooseAttribute(features, labels);
     if bestAttribute == -1
         positives = nnz(strcmp(labels.class, 'recurrence-events'));
@@ -33,10 +29,6 @@ function decisionTree = decisionTreeLearning(features, labels)
         else
             decisionTree.class = 0;
         end
-        decisionTree.op = "";
-        decisionTree.kids = [];
-        decisionTree.attribute = "";
-        decisionTree.threshold = "";
         return;
     end
     
@@ -47,19 +39,20 @@ function decisionTree = decisionTreeLearning(features, labels)
     decisionTree.attribute = attributeNames(decisionTree.op);
     decisionTree.threshold = bestThreshold;
     
-    % get indexes of rows where attribute values meet the threshold
+    % Get indexes of rows where attribute values are equal to the threshold
     [leftIndices,~] = find(strcmp(table2cell(features(:,bestAttribute)), bestThreshold));
     
+    % Left kid subtree
     otherAttributes = setdiff(1:width(features), bestAttribute);
     leftKidFeatures = features(leftIndices,otherAttributes);
     leftKidLabels = labels(leftIndices,:);
     
-    % delete rows at indexesToSubset
+    % Right kid subtree
     rightIndices = setdiff(1:height(features), leftIndices);
     rightKidFeatures = features(rightIndices,:);
     rightKidLabels = labels(rightIndices,:);
     
-    % only set kids if there are rows in the feature tables
+    % Generate kids subtrees
     decisionTree.kids = cell(1,2);
     decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels);
     decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels);

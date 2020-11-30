@@ -14,8 +14,6 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
     bestAttribute = -1;
     bestThreshold = -1;
     
-    bestThresholds = {width(features),1};
-    
     positives = nnz(strcmp(labels.class, uniqueLabels{1}));
     positiveRatio = positives/totalExamples;
     negativeRatio = 1 - positiveRatio;
@@ -58,16 +56,13 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
         % Calculate attribute information gain
         averageInformationEntropy = sum([valuesInformationEntropies{:}]);
         informationGain = datasetEntropy - averageInformationEntropy;
-        
-        [~,idx] = min([valuesInformationEntropies{:}]); % Get index of value with smallest information entropy
-        bestThresholds{currentAttribute} = uniqueValues{idx}; % Set value as best threshold
-        
+
+        % Update bestInformationGain, bestAttribute and bestThreshold
         if informationGain > bestInformationGain
             bestInformationGain = informationGain;
             bestAttribute = currentAttribute; % Column number
-            bestThreshold = bestThresholds{bestAttribute};
-        end
-        
+            [~,idx] = min([valuesInformationEntropies{:}]); % Get index of value with smallest information entropy
+            bestThreshold = uniqueValues{idx}; % Set value as best threshold
+        end     
     end
-    
 end
