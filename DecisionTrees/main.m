@@ -109,6 +109,14 @@ end
 for colIdx = 1:length(numericalColumnsNearestInt)
     col = numericalColumnsNearestInt{colIdx};
     features.(col) = round(features.(col));
+    if numel(unique(string(features.(col)))) < 10
+        bins = numel(unique(string(features.(col))));
+    else
+        bins = 10;
+    end
+    stepSize = ((max(features.(col)) - min(features.(col)) ) / bins);
+    edges = min(features.(col)) : stepSize : max(features.(col));
+    features.(col) = discretize(features.(col),edges);
     features.(col) = string(features.(col));
 end
 
@@ -121,5 +129,5 @@ attributeNames = containers.Map(colnames, 1:width(features));
 % classification
 decisionTree = decisionTreeLearning(features, labels, 0);
 
-%DrawDecisionTree(decisionTree, 'Classification Tree');
+DrawDecisionTree(decisionTree, 'Regression Tree');
 

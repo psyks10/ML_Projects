@@ -1,42 +1,62 @@
 function decisionTree = decisionTreeLearning(features, labels, treetype)
 
+    global nodeCount;
+    nodeCount = nodeCount+1;
+    nodeCount
+    
+    if nodeCount == 658
+        nodeCount;
+    end
+        
     decisionTree.op = "";
     decisionTree.kids = [];
     decisionTree.attribute = "";
     decisionTree.threshold = "";
     
-     if treetype == 1
-        % classification  
-    else 
-        % regression
-     end   
+%     if nodeCount >= 100
+%         return;
+%     end
     
     % If number of unique labels is 1 we return the only label
-    if height(unique(labels.label)) == 1
-        decisionTree.class = avg(labels.label);
+    %'unique labels'
+    %height(unique(string(labels.label)))
+    %'labels'
+    %labels.label
+    if height(unique(string(labels.label))) == 1
+        "Leaf node"
+        decisionTree.class = mean(cell2mat(labels.label));
         return;
     end
     
     % Else get the attribute and threshold to use for splitting the node    
-    [bestAttribute, bestThreshold] = chooseAttribute(features, labels);
+    [bestAttribute, bestThreshold] = chooseAttribute(features, labels, treetype);
 
-    if treetype == 1
-        % If bestAttribute == -1 there was no bestAttribute to choose
-        % so we use the majority. If there is no majority we use the most
-        % common class in the dataset.
-        if bestAttribute == -1
-            positives = sum(labels.label);
-            negatives = height(labels) - positives;
-            if positives > negatives
+
+    % If bestAttribute == -1 there was no bestAttribute to choose
+    % so we use the majority. If there is no majority we use the most
+    % common class in the dataset.
+    if bestAttribute == -1
+        "Leaf node"
+        if treetype == 1
+            positives = nnz(cell2mat(labels.label));
+            positivesRatio = positives/height(labels);
+            if positivesRatio > 0.5
                 decisionTree.class = 1;
             else
                 decisionTree.class = 0;
             end
-            return;
+        else
+            average = mean(cell2mat(labels.label));
+            features
+            labels.label
+            decisionTree.class = average;
         end
-    else 
-        % regression when bestAttribute is -1
+        'returning'
+        return;
+        
     end
+
+
     
     decisionTree.op = features.Properties.VariableNames{bestAttribute};
     % Assign the attribute and threshold-values from the ID3 algorithm chooseAttribute() to the relevant fields of the tree-struct
@@ -46,7 +66,8 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     decisionTree.threshold = bestThreshold;
     
     % Get indexes of rows where attribute values are equal to the threshold
-    [leftIndices,~] = find(strcmp(table2cell(features(:,bestAttribute)), bestThreshold));
+    %[leftIndices,~] = find(strcmp(table2cell(features(:,bestAttribute)), bestThreshold));
+    [leftIndices,~] = find(strcmp(features.(bestAttribute), bestThreshold));
     
     % Left kid subtree
     otherAttributes = setdiff(1:width(features), bestAttribute);
@@ -59,8 +80,21 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     rightKidLabels = labels(rightIndices,:);
     
     % Generate kids subtrees
-    decisionTree.kids = cell(1,2);
-    decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels);
-    decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels);
-    
+    if ~isempty(rightKidFeatures) || ~isempty(rightKidFeatures)
+        decisionTree.kids = cell(1,1);
+    else
+        decisionTree.kids = cell(1,2);
+    end
+    'Left Kid'
+    %size(leftKidFeatures)
+    %size(leftKidLabels)
+    if ~isempty(leftKidFeatures) && ~isempty(leftKidLabels)
+        decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels, treetype);
+
+    'Right Kid'
+    %size(rightKidFeatures)
+    %size(rightKidLabels)
+    if ~isempty(rightKidFeatures) && ~isempty(rightKidLabels)
+        decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels, treetype);
+    end
 end

@@ -1,5 +1,4 @@
 function stdev = calculateStandardDeviation(labels)
-    labels
     % high standard deviation = low purity
     if numel(unique(string(labels.label))) == 1
        stdev = 0;

@@ -1,21 +1,15 @@
 function decisionTree = decisionTreeLearning(features, labels, treetype)
-
+        
     decisionTree.op = "";
     decisionTree.kids = [];
     decisionTree.attribute = "";
     decisionTree.threshold = "";
     
-     if treetype == 1
-        % classification  
-    else 
-        % regression
-     end   
-    
     % If number of unique labels is 1 we return the only label
-    'unique labels'
-    height(unique(string(labels.label)))
-    'labels'
-    labels.label
+    %'unique labels'
+    %height(unique(string(labels.label)))
+    %'labels'
+    %labels.label
     if height(unique(string(labels.label))) == 1
         decisionTree.class = mean(cell2mat(labels.label));
         return;
@@ -29,7 +23,6 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     % so we use the majority. If there is no majority we use the most
     % common class in the dataset.
     if bestAttribute == -1
-        
         if treetype == 1
             positives = nnz(cell2mat(labels.label));
             positivesRatio = positives/height(labels);
@@ -42,7 +35,6 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
             average = mean(cell2mat(labels.label));
             decisionTree.class = average;
         end
-        
         return;
         
     end
@@ -57,7 +49,8 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     decisionTree.threshold = bestThreshold;
     
     % Get indexes of rows where attribute values are equal to the threshold
-    [leftIndices,~] = find(strcmp(table2cell(features(:,bestAttribute)), bestThreshold));
+    %[leftIndices,~] = find(strcmp(table2cell(features(:,bestAttribute)), bestThreshold));
+    [leftIndices,~] = find(strcmp(features.(bestAttribute), bestThreshold));
     
     % Left kid subtree
     otherAttributes = setdiff(1:width(features), bestAttribute);
@@ -70,8 +63,17 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     rightKidLabels = labels(rightIndices,:);
     
     % Generate kids subtrees
-    decisionTree.kids = cell(1,2);
+   if isempty(rightKidFeatures) || isempty(rightKidFeatures)
+        decisionTree.kids = cell(1,1);
+        size(decisionTree.kids)
+    else
+        decisionTree.kids = cell(1,2);
+        size(decisionTree.kids)
+    end
+
     decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels, treetype);
-    decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels, treetype);
-    
+
+    if ~isempty(rightKidFeatures) && ~isempty(rightKidLabels)
+        decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels, treetype);
+    end
 end

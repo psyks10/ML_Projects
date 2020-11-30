@@ -29,7 +29,17 @@
 % % extract label-column from data set
 % labels = dataBC(:,1);
 % labels.Properties.VariableNames = {'label'}; 
-%
+% 
+% labelNames = {'no-recurrence-events', 'recurrence-events'};
+% 
+% labelNamesMap = containers.Map(labelNames, 0:length(labelNames)-1);
+% 
+% for labelIdx = 1:length(labelNames)
+%     value = labelNames{labelIdx};
+%     indices = strcmp(labels.label, value);
+%     labels.label(indices) = {labelNamesMap(value)};
+% end
+
 % % extract feature-columns from data set
 % features = dataBC(:,2:width(dataBC));
 % 
@@ -59,12 +69,6 @@ rmdir(file.folder, 's');
 clear folder
 clear zipUrl
 clear file
-% obesityData = regexp(obesityData, ',+', 'split');
-% obesityData = vertcat(obesityData{:});
-
-% Convert to table
-% colnames = obesityData(1,:);
-% obesityData = cell2table(obesityData(2:height(obesityData),:), 'VariableNames', colnames);
 
 % set up seed for random permutation (randperm) to use
 seed = 101;
@@ -89,36 +93,40 @@ for labelIdx = 1:length(labelNames)
 end
 
 % extract feature-columns from data set
-features = dataOD(:,1:width(dataOD));
+features = dataOD(:,1:width(dataOD)-1);
 
 numericalColumnsNearestInt = {'Age', 'Weight', 'FCVC', 'NCP', 'CH2O', 'FAF', 'TUE'};
 numericalColumnsTruncate = {'Height'};
 
+% Truncate height to generate bins of 10cm
 for colIdx = 1:length(numericalColumnsTruncate)
     col = numericalColumnsTruncate{colIdx};
-    features.
-
-
-% Truncate height to generate bins of 10cm
-features.Height = fix(features.Height*10)/10;
-decimal = 1;
-features.Height = round(10^decimal*features.Height)/10^decimal;
+    features.(col) = fix(features.(col)*10)/10;
+    features.(col) = string(features.(col));
+end
 
 % Round to closest integer to generate bins
-features.Weight = round(features.Weight);
-features.FCVC = round(features.FCVC);
-features.Weight = round(features.Weight);
-features.Weight = round(features.Weight);
-features.Weight = round(features.Weight);
-
 for colIdx = 1:length(numericalColumnsNearestInt)
     col = numericalColumnsNearestInt{colIdx};
-    features(:,col) = round(features(:,col));
+    features.(col) = round(features.(col));
+    if numel(unique(string(features.(col)))) < 10
+        bins = numel(unique(string(features.(col))));
+    else
+        bins = 10;
+    end
+    stepSize = ((max(features.(col)) - min(features.(col)) ) / bins);
+    edges = min(features.(col)) : max(features.(col)) : stepSize;
+    features.(col) = discretize(features.(col),edges);
+    features.(col) = string(features.(col));
 end
 
 % create cell array of attribute IDs (feature names)
 global attributeNames;
-attributeNames = containers.Map(colnames(:,1:length(colnames)-1), 1:length(colnames)-1);
+colnames = features.Properties.VariableNames;
+attributeNames = containers.Map(colnames, 1:width(features));
+
+global nodeCount;
+nodeCount = 0;
 
 % We need to now build the tree, giving 1 as the class, meaning it's
 % classification
