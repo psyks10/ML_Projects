@@ -65,10 +65,8 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     % Generate kids subtrees
    if isempty(rightKidFeatures) || isempty(rightKidFeatures)
         decisionTree.kids = cell(1,1);
-        size(decisionTree.kids)
     else
         decisionTree.kids = cell(1,2);
-        size(decisionTree.kids)
     end
 
     decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels, treetype);

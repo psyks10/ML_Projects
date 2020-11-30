@@ -8,6 +8,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
 
     totalExamples = height(labels);
     
+    % Will hold the information gains for all attributes
     attributesInfGains = {width(features),1};
     
     % Intialise to -1 so we know if something has gone wrong
@@ -86,6 +87,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
         attributesInfGains{currentAttribute} = informationGain;
     end
     
+    % If all the attributes have the same information gain, return a node
     if mean(cell2mat(attributesInfGains)) == bestInformationGain
         bestAttribute = -1;
     end

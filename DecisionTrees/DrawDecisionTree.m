@@ -20,7 +20,7 @@ if nargin < 2
     titletext = 'Decision Tree found';
 end
 % Using new figure to display tree
-h=figure; % new figure for this particular tree
+h=figure('units','normalized','outerposition',[0 0 1 1]); % new figure for this particular tree
 % set(h,'name',titletext);
 title(titletext);
 
