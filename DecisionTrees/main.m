@@ -35,6 +35,6 @@ attributeNames = containers.Map({'age', 'menopause', 'tumorSize', 'invNodes', 'n
 
 % We need to now build the tree, giving 1 as the class, meaning it's
 % classification
-decisionTree = decisionTreeLearning(features, labels, 1);
+decisionTree = decisionTreeLearning(features, labels);
 
 DrawDecisionTree(decisionTree, 'Classification Tree');

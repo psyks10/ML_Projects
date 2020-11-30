@@ -11,7 +11,8 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
     
     % Intialise to -1 so we know if something has gone wrong
     bestInformationGain = -1;
-    bestAttribute = 1; % Randomise?
+    bestAttribute = -1;
+    bestThreshold = -1;
     
     bestThresholds = {width(features),1};
     
@@ -38,7 +39,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
             subset = dataset(indexesToSubset,:);
             
             % All positives and negatives in the subsets
-            positives = nnz(strcmp(subset(:,1).class, uniqueLabels{1}));
+            positives = nnz(strcmp(subset(:,1).class, 'recurrence-events'));
             negatives = height(subset) - positives;
             
             % Ratios
@@ -64,9 +65,9 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
         if informationGain > bestInformationGain
             bestInformationGain = informationGain;
             bestAttribute = currentAttribute; % Column number
+            bestThreshold = bestThresholds{bestAttribute};
         end
         
     end
     
-    bestThreshold = bestThresholds{bestAttribute};
 end
