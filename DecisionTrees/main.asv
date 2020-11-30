@@ -54,17 +54,17 @@ folder = 'Regression data';
 zipUrl = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00544/ObesityDataSet_raw_and_data_sinthetic%20(2).zip';
 unzip(zipUrl, folder)
 file = dir([folder,'/*.csv']);
-obesityData = importdata([file.folder,'/',file.name]);
+obesityData = readtable([file.folder,'/',file.name]);
 rmdir(file.folder, 's');
 clear folder
 clear zipUrl
 clear file
-obesityData = regexp(obesityData, ',+', 'split');
-obesityData = vertcat(obesityData{:});
+% obesityData = regexp(obesityData, ',+', 'split');
+% obesityData = vertcat(obesityData{:});
 
 % Convert to table
-colnames = obesityData(1,:);
-obesityData = cell2table(obesityData(2:height(obesityData),:), 'VariableNames', colnames);
+% colnames = obesityData(1,:);
+% obesityData = cell2table(obesityData(2:height(obesityData),:), 'VariableNames', colnames);
 
 % set up seed for random permutation (randperm) to use
 seed = 101;
@@ -77,22 +77,44 @@ dataOD = obesityData(randperm(size(obesityData,1)),:);
 labels = dataOD(:,width(dataOD));
 labels.Properties.VariableNames = {'label'};
 
-% {'Insufficient_Weight'} {'Normal_Weight'} {'Overweight_Level_I'}
-% {'Overweight_Level_II'} {'Obesity_Type_I'}
-% {'Obesity_Type_II'} {'Obesity_Type_III'}
-labelNames = {'Insufficient_Weight', 'Normal_Weight', 'Overweight_Level_I', ... 
-    'Obesity_Type_II', 'Obesity_Type_III'};
+labelNames = {'Insufficient_Weight', 'Normal_Weight', 'Overweight_Level_I', ...
+    'Overweight_Level_II', 'Obesity_Type_I', 'Obesity_Type_II', 'Obesity_Type_III'};
 
 labelNamesMap = containers.Map(labelNames, 1:length(labelNames));
 
-for value = 1:length(labelNames)
+for labelIdx = 1:length(labelNames)
+    value = labelNames{labelIdx};
     indices = strcmp(labels.label, value);
-    %labels(indices,'label') = labelNamesMap(value);
-    labels(indices,'label') = 1;
+    labels.label(indices) = {labelNamesMap(value)};
 end
 
 % extract feature-columns from data set
 features = dataOD(:,1:width(dataOD));
+
+numericalColumnsNearestInt = {'Age', 'Weight', 'FCVC', 'NCP', 'CH2O', 'FAF', 'TUE'};
+numericalColumnsTruncate = {'Height'};
+
+for colIdx = 1:length(numericalColumnsTruncate)
+    col = numericalColumnsTruncate{colIdx};
+    features.
+
+
+% Truncate height to generate bins of 10cm
+features.Height = fix(features.Height*10)/10;
+decimal = 1;
+features.Height = round(10^decimal*features.Height)/10^decimal;
+
+% Round to closest integer to generate bins
+features.Weight = round(features.Weight);
+features.FCVC = round(features.FCVC);
+features.Weight = round(features.Weight);
+features.Weight = round(features.Weight);
+features.Weight = round(features.Weight);
+
+for colIdx = 1:length(numericalColumnsNearestInt)
+    col = numericalColumnsNearestInt{colIdx};
+    features(:,col) = round(features(:,col));
+end
 
 % create cell array of attribute IDs (feature names)
 global attributeNames;
@@ -100,7 +122,7 @@ attributeNames = containers.Map(colnames(:,1:length(colnames)-1), 1:length(colna
 
 % We need to now build the tree, giving 1 as the class, meaning it's
 % classification
-% decisionTree = decisionTreeLearning(features, labels);
+decisionTree = decisionTreeLearning(features, labels, 0);
 
 %DrawDecisionTree(decisionTree, 'Classification Tree');
 

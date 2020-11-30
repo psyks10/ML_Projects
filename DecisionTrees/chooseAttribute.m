@@ -1,7 +1,7 @@
 % Implementation of the ID3-algorithm to find the best attribute and
 % threshold for a new node of the decision tree
 
-function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
+function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, treetype)
 
     % Label is the first column in dataset
     dataset = horzcat(labels, features);
@@ -14,10 +14,14 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels)
     bestAttribute = -1;
     bestThreshold = -1;
     
-    positives = nnz(strcmp(labels.class, uniqueLabels{1}));
-    positiveRatio = positives/totalExamples;
-    negativeRatio = 1 - positiveRatio;
-    datasetEntropy = calculateEntropy(positiveRatio, negativeRatio);
+    if treetype == 1
+        positives = nnz(strcmp(labels.class, uniqueLabels{1}));
+        positiveRatio = positives/totalExamples;
+        negativeRatio = 1 - positiveRatio;
+        datasetEntropy = calculateEntropy(positiveRatio, negativeRatio);
+    else
+        datasetStDev = calculateStandardDeviation(labels);
+    end
     
     % Iterate through attributes to calculate information gain values
     for currentAttribute = 1:width(features) 

@@ -1,4 +1,4 @@
 function stdev = calculateStandardDeviation(labels)
     % high standard deviation = low purity
-    stdev = std(labels.label);
+    stdev = std(cell2mat(labels.label));
 end
