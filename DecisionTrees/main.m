@@ -80,15 +80,15 @@ labels.Properties.VariableNames = {'label'};
 % {'Insufficient_Weight'} {'Normal_Weight'} {'Overweight_Level_I'}
 % {'Overweight_Level_II'} {'Obesity_Type_I'}
 % {'Obesity_Type_II'} {'Obesity_Type_III'}
-labelNames = {'Insufficient_Weight', 'Normal_Weight', 'Overweight_Level_I', ... 
-    'Obesity_Type_II', 'Obesity_Type_III'};
+labelNames = {'Insufficient_Weight', 'Normal_Weight', 'Overweight_Level_I', ...
+    'Overweight_Level_II', 'Obesity_Type_I', 'Obesity_Type_II', 'Obesity_Type_III'};
 
 labelNamesMap = containers.Map(labelNames, 1:length(labelNames));
-labelNamesMap = containers.Map(labelNames, {"1","2","3","4","5"});
 
-for value = 1:length(labelNames)
+for index = 1:length(labelNames)
+    value = labelNames{index};
     indices = strcmp(labels.label, value);
-    labels(indices,'label') = string(labelNamesMap(value));
+    labels.label(indices) = {labelNamesMap(value)};
 end
 
 % extract feature-columns from data set
@@ -100,7 +100,7 @@ attributeNames = containers.Map(colnames(:,1:length(colnames)-1), 1:length(colna
 
 % We need to now build the tree, giving 1 as the class, meaning it's
 % classification
-% decisionTree = decisionTreeLearning(features, labels);
+decisionTree = decisionTreeLearning(features, labels, 0);
 
 %DrawDecisionTree(decisionTree, 'Classification Tree');
 

@@ -6,8 +6,7 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     decisionTree.threshold = "";
     
      if treetype == 1
-        % classification
-        
+        % classification  
     else 
         % regression
      end   
