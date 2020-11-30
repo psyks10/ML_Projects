@@ -1,20 +1,13 @@
 function decisionTree = decisionTreeLearning(features, labels, treetype)
-
+       
     decisionTree.op = "";
     decisionTree.kids = [];
     decisionTree.attribute = "";
     decisionTree.threshold = "";
     
-     if treetype == 1
-        % classification
-        
-    else 
-        % regression
-     end   
-    
     % If number of unique labels is 1 we return the only label
-    if height(unique(labels.label)) == 1
-        prediction = unique(string(labels.label));
+    if height(unique(labels.class)) == 1
+        prediction = unique(string(labels.class));
         if string(prediction) == 'no-recurrence-events'
             decisionTree.class = 0;
         elseif string(prediction) == 'recurrence-events'
@@ -29,7 +22,7 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     % common class in the dataset.
     [bestAttribute, bestThreshold] = chooseAttribute(features, labels);
     if bestAttribute == -1
-        positives = nnz(strcmp(labels.label, 'recurrence-events'));
+        positives = nnz(strcmp(labels.class, 'recurrence-events'));
         negatives = height(labels) - positives;
         if positives > negatives
             decisionTree.class = 1;

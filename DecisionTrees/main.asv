@@ -84,11 +84,11 @@ labelNames = {'Insufficient_Weight', 'Normal_Weight', 'Overweight_Level_I', ...
     'Obesity_Type_II', 'Obesity_Type_III'};
 
 labelNamesMap = containers.Map(labelNames, 1:length(labelNames));
-labelNamesMap = containers.Map(labelNames, {"1","2","3","4","5"});
 
 for value = 1:length(labelNames)
     indices = strcmp(labels.label, value);
-    labels(indices,'label') = string(labelNamesMap(value));
+    %labels(indices,'label') = labelNamesMap(value);
+    labels(indices,'label') = 1;
 end
 
 % extract feature-columns from data set
