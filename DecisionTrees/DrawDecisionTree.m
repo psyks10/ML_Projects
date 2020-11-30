@@ -37,7 +37,6 @@ state.yDist = -1;
 % Draw tree
 [tree, state] = walkTreeDepthFirst(tree, [], 'drawNode', 0, 0 );
 % Save tree
-fullfig(h);
 saveas(h, [titletext,'.png']);
 axis off
 
