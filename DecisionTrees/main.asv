@@ -8,7 +8,10 @@
 % Set up trees to generate
 trees = {{1, 'Classification Tree'}, {0, 'Regression Tree'}};
 
-% Generate decison trees
+% Generate decison trees 
+% This section loads each dataset and generates the decision trees 
+% using the entire dataset
+% Comment this for K-Fold
 for t = 1:length(trees)
     treeType = trees{t}{1};
     treeName = trees{t}{2};
@@ -17,13 +20,17 @@ end
 
 
 % K-Fold
+% This section splits the data in train, test and validation sets,
+% runs K-Fold cross-validation and retuns evaluation metrics
+%
 
-% Split data 80/20
-[features, labels] = loadDataset(1);
-[trainEvaluationClass, testEvaluationClass] = runKfold(features, labels, 1);
-
-[features, labels] = loadDataset(0);
-accuracyReg = runKfold(features, labels, 0);
+% Classification
+% [features, labels] = loadDataset(1);
+% [trainEvaluationClass, testEvaluationClass] = runKfold(features, labels, 1);
+% 
+% Regression
+% [features, labels] = loadDataset(0);
+% [trainEvaluationReg, testEvaluationReg] = runKfold(features, labels, 0);
 
 function createTree(treeName, treeType)
     [features, labels] = loadDataset(treeType);
