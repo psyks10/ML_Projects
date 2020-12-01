@@ -1,5 +1,5 @@
 function decisionTree = decisionTreeLearning(features, labels, treetype)
-        
+    
     decisionTree.op = "";
     decisionTree.kids = [];
     decisionTree.attribute = "";

@@ -18,6 +18,7 @@ for t = 1:length(trees)
     createTree(treeName, treeType);
 end
 
+
 % K-Fold
 
 % Split data 80/20
