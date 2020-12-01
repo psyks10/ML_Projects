@@ -28,14 +28,17 @@ function accuracy = runKfold(features, labels, treeType)
         if treeType == 0
             %regression RMSE
             metrics.rmse = 'calculations';
+            accuracy = rmse;
         elseif treeType == 1
             confusionMatrix = calculateConfusionMatrix(labels, predictions);
-            metrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
-            metrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
-            metrics.F1Score = 2 * ( (metrics.precisionRates*metrics.recallRates) / (metrics.precisionRates+metrics.recallRates)  );
+            metrics.recallRates = confusionMatrix.TP / (confusionMatrix.TP/confusionMatrix.FN);
+            metrics.precisionRates = confusionMatrix.TP / (confusionMatrix.TP/confusionMatrix.FP);
+            metrics.accuracy = ;
+            metrics.F1Scores = (confusionMatrix.TP + confusionMatrix.TN) / (confusionMatrix.TP/confusionMatrix.FP);
+            accuracy = metrics;
         end
         
-        accuracy{index} = metrics;
+        accuracy{index} = accuracy;
         
         DrawDecisionTree(decisionTree, 'Classification Tree');
 
