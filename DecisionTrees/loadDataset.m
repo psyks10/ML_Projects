@@ -27,7 +27,8 @@ function [features, labels] = loadRegressionDataset()
     rng(seed);
 
     % shuffle rows of cell array using seed
-    dataOD = obesityData(randperm(size(obesityData,1)),:);
+    randomIndices = randperm(size(obesityData,1));
+    dataOD = obesityData(randomIndices,:);
 
     % extract label-column from data set
     labels = dataOD(:,width(dataOD));
@@ -97,9 +98,14 @@ function [features, labels] = loadClassificationDataset()
 
     breastCancer = cell2table(breastCancer, 'VariableNames', {'class', 'age', 'menopause', 'tumorSize', 'invNodes', 'nodeCaps', 'degMalig', 'breast', 'breastQuad', 'irradiat'});
     clear options
+    
+    % set up seed for random permutation (randperm) to use
+    seed = 101;
+    rng(seed);
 
-    % Shuffle rows of cell array using seed
-    dataBC = breastCancer(randperm(size(breastCancer,1)),:);
+    % shuffle rows of cell array using seed
+    randomIndices = randperm(size(breastCancer,1));
+    dataBC = breastCancer(randomIndices,:);
 
     % Extract label-column from data set
     labels = dataBC(:,1);

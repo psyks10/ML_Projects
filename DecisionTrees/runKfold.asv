@@ -1,9 +1,17 @@
 function accuracy = runKfold(features, labels, treeType)
 
-    featureFolds = split(features);
-    labelFolds = split(labels);
+    % Split in 80% training and 20% testing 
+    trainingSize = ceil(height(features)*0.8);
+    trainingFeatures = features(1:trainingSize,:);
+    trainingLabels = labels(trainingSize+1:height(features),:);
+    testingFeatures = features(trainingSize+1:height(features),:);
+    testingLabels = labels(trainingSize+1:height(features),:);
 
+    trees = cell(10,1); 
     accuracy = cell(10,1);
+    
+    featureFolds = split(trainingFeatures);
+    labelFolds = split(trainingLabels);
     
     possibleSplits = calculatePossibleSplits(1:10);
 
@@ -16,32 +24,32 @@ function accuracy = runKfold(features, labels, treeType)
         trainingSetLabels = table();
         for i=1:length(trainingSplit)
             trainingSetFeatures = vertcat(trainingSetFeatures,featureFolds{i});
-            trainingSetLabels = vertcat(trainingSetLabels,labelFolds{i});
-            trainingSetLabels.label = ntrainingSetLabels.label
+            trainingSetLabels = vertcat(trainingSetLabels,labelFolds{i});    
         end
+        
+        trainingSetLabels.label = num2cell(trainingSetLabels.label);
         
         validationSetFeatures = featureFolds{validationSplit};
         validationSetLabels = labelFolds{validationSplit};
+        validationSetLabels.label = num2cell(validationSetLabels.label);
         
-        class(trainingSetFeatures)
-        class(trainingSetLabels)
         decisionTree = decisionTreeLearning(trainingSetFeatures, trainingSetLabels, treeType);
         predictions = runTree(validationSetFeatures, decisionTree);
         
         if treeType == 0
-            metrics.rmse = calculateRMSE(labels, predictions);
+            metrics.rmse = calculateRMSE(validationSetLabels.label, predictions);
         elseif treeType == 1
-            confusionMatrix = calculateConfusionMatrix(labels, predictions);
+            confusionMatrix = calculateConfusionMatrix(validationSetLabels.label, predictions);
             metrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
             metrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
-            metrics.F1Score = 2 * ( (metrics.precisionRates*metrics.recallRates) / (metrics.precisionRates+metrics.recallRates)  );
+            metrics.F1Score = 2 * ( (metrics.precision*metrics.recall) / (metrics.precision+metrics.recall)  );
         end
         
         accuracy{index} = metrics;
+        trees{index} = decisionTree;
         
-        DrawDecisionTree(decisionTree, 'Classification Tree');
-
     end
+
     
 end
 

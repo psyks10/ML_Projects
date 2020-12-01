@@ -40,7 +40,8 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     
     decisionTree.op = features.Properties.VariableNames{bestAttribute};
     % Assign the attribute and threshold-values from the ID3 algorithm chooseAttribute() 
-    % to the relevant fields of the tree-struct
+    %to the relevant fields of the tree-struct
+    % set attribute number using name in map
     global attributeNames
     decisionTree.attribute = attributeNames(decisionTree.op);
     decisionTree.threshold = bestThreshold;
