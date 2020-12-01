@@ -1,6 +1,6 @@
 function possibleSplits = calculatePossibleSplits(values)
     
-    possibleSplits = cell(length(uniqueValues),2);
+    possibleSplits = cell(length(values),2);
     
     for i = 1:length(values)
         
