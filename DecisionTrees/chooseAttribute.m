@@ -9,7 +9,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
     totalExamples = height(labels);
     
     % Will hold the information gains for all attributes
-    attributesInfGains = {width(features),1};
+    attributesInfGains = cell(width(features),1);
     
     % Intialise to -1 so we know if something has gone wrong
     bestInformationGain = -1;
