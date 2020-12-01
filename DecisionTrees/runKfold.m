@@ -26,8 +26,7 @@ function accuracy = runKfold(features, labels, treeType)
         predictions = runTree(validationSetFeatures, decisionTree);
         
         if treeType == 0
-            %regression RMSE
-            metrics.rmse = 'calculations';
+            metrics.rmse = calculateRMSE(labels, predictions);
         elseif treeType == 1
             confusionMatrix = calculateConfusionMatrix(labels, predictions);
             metrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
