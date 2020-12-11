@@ -9,7 +9,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
     totalExamples = height(labels);
     
     % Will hold the information gains for all attributes
-    attributesInfGains = cell(width(features),1);
+    attributesInfGains = {width(features),1};
     
     % Intialise to -1 so we know if something has gone wrong
     bestInformationGain = -1;
@@ -32,8 +32,8 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
         % attribute = features(:,feature); 
         uniqueValues = table2cell(unique(features(:,currentAttribute)));
        
-        valuesEntropies = cell(length(uniqueValues),1);
-        valuesInformationEntropies = cell(length(uniqueValues),1);
+        valuesEntropies = (length(uniqueValues),1};
+        valuesInformationEntropies = {length(uniqueValues),1};
         
         % Calculate entropy and information entropy for each value
         for currentValue = 1:length(uniqueValues)

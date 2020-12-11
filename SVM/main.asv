@@ -1,6 +1,0 @@
-
-for k = 1:2
-    [features, labels] = loadDataset(treetype);
-    
-    guassianResults = guassianTraining(treetype, features, labels);
-end

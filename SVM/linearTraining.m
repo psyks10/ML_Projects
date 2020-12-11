@@ -1,7 +1,6 @@
 function results = linearTraining(type, features, labels)
 
-    typeBool = type==1;
-    if typeBool
+    if type
         results = struct('Error', NaN,'NoOfSupportVectors', NaN);
     else
         results = struct('Epsilon', NaN, 'Error', NaN,'NoOfSupportVectors', NaN);
@@ -16,14 +15,14 @@ function results = linearTraining(type, features, labels)
     testData = features(testIdx, :);
     testTarg = labels(testIdx,:);
     
-    if typeBool
+    if type
         epsilons = 1:1;
     else
-        epsilons = [0.1,0.2,0.5,1];
+        epsilons = {0.1};%,0.2,0.5,1];
     end
     
     for i = 1:length(epsilons)
-        if typeBool
+        if type
             model = fitcsvm(trainData,trainTarg, 'KernelFunction','linear', 'BoxConstraint',1);
         else
             model = fitrsvm(trainData,trainTarg, 'KernelFunction','linear', 'BoxConstraint',1,'Epsilon', epsilons{i});

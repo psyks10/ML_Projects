@@ -1,17 +1,16 @@
 function results = innerCrossValidation(type, features, labels, kernelFunction)    
-    typeBool = type==1;
     
     if strcmp(kernelFunction,'Polynomial')
-        kernelParameterName = 'Polynomial Order';
+        kernelParameterName = 'PolynomialOrder';
         kernelParameter = 'q';
-        options = 1:10;
+        options = 1:2;
     else
         kernelParameterName = 'KernelScale';
         kernelParameter = 'Gamma';
         options = 2.^(-5:2:15);
     end
     
-    if typeBool
+    if type
         results = struct('C', NaN, kernelParameter, NaN, 'Error', NaN,'NoOfSupportVectors', NaN);
     else
         results = struct('C', NaN, kernelParameter, NaN, 'Epsilon', NaN, 'Error', NaN,'NoOfSupportVectors', NaN);
@@ -19,7 +18,7 @@ function results = innerCrossValidation(type, features, labels, kernelFunction)
     
     gridC = 2.^(-5:2:15);
    
-    if typeBool
+    if type
         epsilons = 1:1;
     else
         epsilons = 0:0.1:1;
@@ -37,22 +36,34 @@ function results = innerCrossValidation(type, features, labels, kernelFunction)
                     innertrainIdx = horzcat(innerkIdx{setdiff(1:10,innerk)}).';
 
                     innertrainData = features(innertrainIdx, :);
-                    innertrainTarg = labels(innertrainIdx,:);
+                    innertrainLabels = labels(innertrainIdx,:);
 
                     innertestData = features(innerkIdx{innerk}, :);
-                    innertestTarg = labels(innerkIdx{innerk},:);
+                    innertestLabels = labels(innerkIdx{innerk},:);
 
-                    if typeBool
-                        cvSVMModel = fitcsvm(innertrainData, innertrainTarg, ...
+                    if type
+                        cvSVMModel = fitcsvm(innertrainData, innertrainLabels, ...
                             'KernelFunction', kernelFunction, kernelParameterName, kernelParameterValue, ...
                             'BoxConstraint', C);
+                        
                     else
-                        cvSVMModel = fitrsvm(innertrainData, innertrainTarg, ...
+                        cvSVMModel = fitrsvm(innertrainData, innertrainLabels, ...
                             'KernelFunction', kernelFunction, kernelParameterName, kernelParameterValue, ...
                             'BoxConstraint', C,'Epsilon', epsilon);
+                        
                     end
 
-                    foldscores{innerk,1} = loss(cvSVMModel,innertestData, innertestTarg);
+                    innertestPred = predict(cvSVMModel, innertestData);
+                    
+                    if type
+                        confusionMatrix = calculateConfusionMatrix(innertestLabels, innertestPred);
+                        recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
+                        precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
+                        F1Score = 2 * ( (precision*recall) / (precision+recall));
+                        foldscores{innerk,1} = F1Score;
+                    else
+                        foldscores{innerk,1} = calculateRMSE(innertestLabels, innertestPred);
+                    end
                     foldscores{innerk,2} = height(cvSVMModel.SupportVectors);
                 end
 
@@ -60,7 +71,7 @@ function results = innerCrossValidation(type, features, labels, kernelFunction)
                 n = length(results)+1;
                 results(n).C = C;
                 results(n).(kernelParameter) = kernelParameterValue;
-                if ~typeBool
+                if ~type
                     results(n).Epsilon = epsilon;
                 end
                 results(n).Error = avgScore;
