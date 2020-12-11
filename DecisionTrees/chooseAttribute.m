@@ -16,6 +16,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
     bestAttribute = -1;
     bestThreshold = -1;
     
+    % Calculate the entropy for the dataset
     if treetype == 1
         positives = nnz(cell2mat(labels.label));
         positiveRatio = positives/totalExamples;
@@ -29,13 +30,12 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
     for currentAttribute = 1:width(features) 
                 
         % Isolate selected attribute and get unique values
-        % attribute = features(:,feature); 
         uniqueValues = table2cell(unique(features(:,currentAttribute)));
        
         valuesEntropies = cell(length(uniqueValues),1);
         valuesInformationEntropies = cell(length(uniqueValues),1);
         
-        % Calculate entropy and information entropy for each value
+        % Calculate entropy for each unique value in the attribute
         for currentValue = 1:length(uniqueValues)
 
             % Get rows where currentAttribute == currentValue
@@ -58,6 +58,7 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
                 informationEntropy = (positives + negatives) / totalExamples * entropy;
                 
             else
+                % Positives and positive ratios
                 positives = height(subset);
                 positiveRatio = positives / height(features);
                 
@@ -84,6 +85,8 @@ function [bestAttribute, bestThreshold]  = chooseAttribute(features, labels, tre
             bestThreshold = uniqueValues{idx}; % Set value as best threshold
         end 
         
+        % Used to check if all the attributes have the same information
+        % gain
         attributesInfGains{currentAttribute} = informationGain;
     end
     

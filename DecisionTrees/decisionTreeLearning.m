@@ -15,8 +15,8 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     [bestAttribute, bestThreshold] = chooseAttribute(features, labels, treetype);
 
 
-    % If bestAttribute == -1 there was no bestAttribute to choose
-    % so we use the majority for classification. 
+    % If bestAttribute == -1 there was no bestAttribute to choose (all have
+    % the same information gain) so we use the majority for classification. 
     % If there is no majority we use the most
     % common class in the dataset. For regression we take the average.
     if bestAttribute == -1
@@ -35,12 +35,10 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
         return;
         
     end
-
-
     
-    decisionTree.op = features.Properties.VariableNames{bestAttribute};
     % Assign the attribute and threshold-values from the ID3 algorithm chooseAttribute() 
     % to the relevant fields of the tree-struct
+    decisionTree.op = features.Properties.VariableNames{bestAttribute};
     global attributeNames
     decisionTree.attribute = attributeNames(decisionTree.op);
     decisionTree.threshold = bestThreshold;
@@ -49,6 +47,7 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     [leftIndices,~] = find(strcmp(features.(bestAttribute), bestThreshold));
     
     % Left kid subtree
+    % Drop the attribute that was used at this node
     otherAttributes = setdiff(1:width(features), bestAttribute);
     leftKidFeatures = features(leftIndices,otherAttributes);
     leftKidLabels = labels(leftIndices,:);
@@ -59,14 +58,17 @@ function decisionTree = decisionTreeLearning(features, labels, treetype)
     rightKidLabels = labels(rightIndices,:);
     
     % Generate kids subtrees
-   if isempty(rightKidFeatures) || isempty(rightKidFeatures)
+    % Assign size of decisionTree.kids based on whether we do have data in 
+    % both kid subsets or not
+    if isempty(rightKidFeatures) || isempty(rightKidFeatures)
         decisionTree.kids = cell(1,1);
     else
         decisionTree.kids = cell(1,2);
     end
-
+    
+    % Left kid
     decisionTree.kids{1} = decisionTreeLearning(leftKidFeatures, leftKidLabels, treetype);
-
+    % Right kid
     if ~isempty(rightKidFeatures) && ~isempty(rightKidLabels)
         decisionTree.kids{2} = decisionTreeLearning(rightKidFeatures, rightKidLabels, treetype);
     end

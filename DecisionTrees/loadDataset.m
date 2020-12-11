@@ -11,7 +11,6 @@ end
 function [features, labels] = loadRegressionDataset()
 
     % Loading Regression data
-
     folder = 'Regression data';
     zipUrl = 'https://archive.ics.uci.edu/ml/machine-learning-databases/00544/ObesityDataSet_raw_and_data_sinthetic%20(2).zip';
     unzip(zipUrl, folder)
@@ -22,18 +21,19 @@ function [features, labels] = loadRegressionDataset()
     clear zipUrl
     clear file
 
-    % set up seed for random permutation (randperm) to use
+    % Set up seed for random permutation (randperm) to use
     seed = 101;
     rng(seed);
 
-    % shuffle rows of cell array using seed
+    % Shuffle rows of cell array using seed
     randomIndices = randperm(size(obesityData,1));
     dataOD = obesityData(randomIndices,:);
 
-    % extract label-column from data set
+    % Extract label-column from data set
     labels = dataOD(:,width(dataOD));
     labels.Properties.VariableNames = {'label'};
-
+    
+    % Encode label names
     labelNames = {'Insufficient_Weight', 'Normal_Weight', 'Overweight_Level_I', ...
         'Overweight_Level_II', 'Obesity_Type_I', 'Obesity_Type_II', 'Obesity_Type_III'};
 
@@ -45,7 +45,7 @@ function [features, labels] = loadRegressionDataset()
         labels.label(indices) = {labelNamesMap(value)};
     end
 
-    % extract feature-columns from data set
+    % Extract feature-columns from data set
     features = dataOD(:,1:width(dataOD)-1);
 
     numericalColumnsNearestInt = {'Age', 'Weight', 'FCVC', 'NCP', 'CH2O', 'FAF', 'TUE'};
@@ -111,8 +111,9 @@ function [features, labels] = loadClassificationDataset()
     labels = dataBC(:,1);
     labels.Properties.VariableNames = {'label'}; 
 
+    % Encode label names to binary
     labelNames = {'no-recurrence-events', 'recurrence-events'};
-
+    
     labelNamesMap = containers.Map(labelNames, 0:length(labelNames)-1);
 
     for labelIdx = 1:length(labelNames)

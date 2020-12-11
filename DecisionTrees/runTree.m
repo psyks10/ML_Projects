@@ -1,4 +1,6 @@
 function treePrediction = runTree(features, tree)
+    % Traverse the tree and return the predictions
+    
     treePrediction = cell(height(features),1);
     
     for index = 1:height(features)

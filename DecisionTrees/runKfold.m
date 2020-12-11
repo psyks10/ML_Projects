@@ -14,12 +14,16 @@ function [trainEvaluation, testEvaluation] = runKfold(features, labels, treeType
     featureFolds = split(trainingFeatures);
     labelFolds = split(trainingLabels);
     
+    % Calculate all possible combinations for the 10 folds
     possibleSplits = calculatePossibleSplits(1:10);
 
     for index = 1:10
+        % Get the fold numbers corresponding to training folds and
+        % validation fold for this iteration
         validationSplit = possibleSplits{index,1};
         trainingSplit = possibleSplits{index,2};
         
+        % Separate data into training and validation
         trainingSetFeatures = table();
         trainingSetLabels = table();
         for i=1:length(trainingSplit)
@@ -33,6 +37,8 @@ function [trainEvaluation, testEvaluation] = runKfold(features, labels, treeType
         validationSetLabels = labelFolds{validationSplit};
         validationSetLabels.label = num2cell(validationSetLabels.label);
         
+        % Generate a decision tree and its predictions on training and test
+        % data
         decisionTree = decisionTreeLearning(trainingSetFeatures, trainingSetLabels, treeType);
         trainingPredictions = runTree(validationSetFeatures, decisionTree);
         testPredictions = runTree(testFeatures, decisionTree);
@@ -56,6 +62,7 @@ function [trainEvaluation, testEvaluation] = runKfold(features, labels, treeType
      
         end
         
+        % Append results
         trainEvaluation{index} = trainMetrics;
         testEvaluation{index} = testMetrics;
         
@@ -64,6 +71,7 @@ function [trainEvaluation, testEvaluation] = runKfold(features, labels, treeType
 end
 
 function splitTables = split(table)
+    % Turn a table into an array of 10 sub-tables
     edges=[1:ceil(height(table)/10):height(table),height(table)];
     discretize(1:height(table), edges).';
     splitTables = splitapply(@(x) {cell2table(x, 'VariableNames', table.Properties.VariableNames)}, table2cell(table), discretize(1:height(table), edges).');
