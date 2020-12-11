@@ -6,7 +6,7 @@ function results = linearTraining(type, features, labels)
         results = struct('Epsilon', NaN, 'Error', NaN,'NoOfSupportVectors', NaN);
     end
     
-    trainIdx = 1:ceil(height(features)*0.8);
+    trainIdx = 1:ceil(height(features));
     testIdx =  setdiff(1:height(features),trainIdx);
 
     trainData = features(trainIdx, :);
@@ -18,7 +18,7 @@ function results = linearTraining(type, features, labels)
     if type
         epsilons = 1:1;
     else
-        epsilons = {0.1};%,0.2,0.5,1];
+        epsilons = [0.1,0.2,0.5,1];
     end
     
     for i = 1:length(epsilons)

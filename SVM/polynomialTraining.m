@@ -1,10 +1,9 @@
 function results = polynomialTraining(type, features, labels)    
-    typeBool = type==1;
 
-    if typeBool
-        results = struct('C', NaN, 'Gamma', NaN,'NoOfSupportVectors', NaN);
+    if type
+        results = struct('C', NaN, 'Gamma', NaN,'NoOfSupportVectors', NaN, 'labels', NaN);
     else
-        results = struct('C', NaN, 'Gamma', NaN, 'Epsilon', NaN, 'RMSE', NaN,'NoOfSupportVectors', NaN);
+        results = struct('C', NaN, 'Gamma', NaN, 'Epsilon', NaN, 'RMSE', NaN,'NoOfSupportVectors', NaN, 'labels', Na);
     end
     
     kIdx = getkFoldIdx(height(labels));
@@ -21,7 +20,7 @@ function results = polynomialTraining(type, features, labels)
         [~, idx] = min([cvResults.Error]);
         result = cvResults(idx);
 
-        if typeBool
+        if type
             model = fitcsvm(trainData, trainLabels, ...
                 'KernelFunction', 'Polynomial', 'PolynomialOrder', result.q, ...
                 'BoxConstraint', result.C);
@@ -32,8 +31,8 @@ function results = polynomialTraining(type, features, labels)
         end
 
         results(k).C = result.C;
-        results(k).Gamma = result.Gamma;
-        if ~typeBool
+        results(k).q = result.q;
+        if ~type
             results(k).Epsilon = result.Epsilon;
         end
         noOfSupportVectors =  height(model.SupportVectors);
@@ -41,7 +40,7 @@ function results = polynomialTraining(type, features, labels)
         results(k).PercentageOfSupportVectors = noOfSupportVectors/height(trainData);
         
         testPred = predict(model,testData);
-        if typeBool
+        if type
             confusionMatrix = calculateConfusionMatrix(testLabels, testPred);
             testMetrics = struct('recall',NaN,'precision',NaN,'F1Score',NaN);
             testMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
@@ -51,6 +50,7 @@ function results = polynomialTraining(type, features, labels)
         else
             results(k).RMSE = calculateRMSE(testLabels, testPred);
         end
+        results(k).labels = testPred;
     end
 end
 

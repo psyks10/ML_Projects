@@ -2,14 +2,12 @@ function results = gaussianTraining(type, features, labels)
 
 
     if type
-        results = struct('C', NaN, 'Gamma', NaN,'NoOfSupportVectors', NaN);
+        results = struct('C', NaN, 'Gamma', NaN,'NoOfSupportVectors', NaN, 'labels', NaN);
     else
-        results = struct('C', NaN, 'Gamma', NaN, 'Epsilon', NaN, 'RMSE', NaN,'NoOfSupportVectors', NaN);
+        results = struct('C', NaN, 'Gamma', NaN, 'Epsilon', NaN, 'RMSE', NaN,'NoOfSupportVectors', NaN, 'labels', NaN);
     end
     
     kIdx = getkFoldIdx(ceil(height(labels)));
-
-    
         
     for k = 1:10
       
@@ -53,6 +51,7 @@ function results = gaussianTraining(type, features, labels)
         else
             results(k).RMSE = calculateRMSE(testTarg, testPred);
         end
+        results(k).labels = testPred;
     end
 end
 
