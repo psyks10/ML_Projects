@@ -49,7 +49,7 @@ function [trainEvaluation] = runKfold(features, labels, treeType)
 
         % Append results
         % trainEvaluation{index,1} = trainMetrics;    
-        trainEvaluation(index).labels = trainingPredictions;
+        trainEvaluation(index).labels = trainingPredictions.';
         trainEvaluation(index).metrics = trainMetrics;
     end
     
