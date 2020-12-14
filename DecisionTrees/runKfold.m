@@ -1,18 +1,10 @@
-function [trainEvaluation, testEvaluation] = runKfold(features, labels, treeType)
+function [trainEvaluation] = runKfold(features, labels, treeType)
 
-    % Split in 80% training and 20% testing 
-    trainingSize = ceil(height(features)*0.8);
-    trainingFeatures = features(1:trainingSize,:);
-    trainingLabels = labels(1:trainingSize,:);
-    testFeatures = features(trainingSize+1:height(features),:);
-    testLabels = labels(trainingSize+1:height(features),:);
-
-    trainEvaluation = cell(10,1); 
-    testEvaluation = cell(10,1);
+    trainEvaluation = cell(10,2); 
     
     % Split training data in 10 folds
-    featureFolds = split(trainingFeatures);
-    labelFolds = split(trainingLabels);
+    featureFolds = split(features);
+    labelFolds = split(labels);
     
     % Calculate all possible combinations for the 10 folds
     possibleSplits = calculatePossibleSplits(1:10);
@@ -41,31 +33,21 @@ function [trainEvaluation, testEvaluation] = runKfold(features, labels, treeType
         % data
         decisionTree = decisionTreeLearning(trainingSetFeatures, trainingSetLabels, treeType);
         trainingPredictions = runTree(validationSetFeatures, decisionTree);
-        testPredictions = runTree(testFeatures, decisionTree);
         
         if treeType == 0
             % Training data evaluation
             trainMetrics.rmse = calculateRMSE(validationSetLabels.label, trainingPredictions);
-            % Testing data evaluation
-            testMetrics.rmse = calculateRMSE(testLabels.label, testPredictions);
         elseif treeType == 1
             % Training data evaluation
             confusionMatrix = calculateConfusionMatrix(validationSetLabels.label, trainingPredictions);
             trainMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
             trainMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
             trainMetrics.F1Score = 2 * ( (trainMetrics.precision*trainMetrics.recall) / (trainMetrics.precision+trainMetrics.recall)  );
-            % Testing data evaluation
-            confusionMatrix = calculateConfusionMatrix(testLabels.label, testPredictions);
-            testMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
-            testMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
-            testMetrics.F1Score = 2 * ( (testMetrics.precision*testMetrics.recall) / (testMetrics.precision+testMetrics.recall)  );
-     
         end
-        
+        trainMetrics.labels = trainingPredictions;
+
         % Append results
-        trainEvaluation{index} = trainMetrics;
-        testEvaluation{index} = testMetrics;
-        
+        trainEvaluation{index,1} = trainMetrics;        
     end
     
 end

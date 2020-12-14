@@ -33,11 +33,11 @@ end
 
 % Classification
 % [features, labels] = loadDataset(1);
-% [trainEvaluationClass, testEvaluationClass] = runKfold(features, labels, 1);
+% [trainEvaluationClass] = runKfold(features, labels, 1);
 % 
 % Regression
 % [features, labels] = loadDataset(0);
-% [trainEvaluationReg, testEvaluationReg] = runKfold(features, labels, 0);
+% [trainEvaluationReg] = runKfold(features, labels, 0);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
