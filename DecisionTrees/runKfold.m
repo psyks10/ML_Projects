@@ -1,6 +1,7 @@
 function [trainEvaluation] = runKfold(features, labels, treeType)
 
-    trainEvaluation = cell(10,2); 
+    %trainEvaluation = cell(10,2); 
+    trainEvaluation = struct("labels", NaN, "metrics", NaN);
     
     % Split training data in 10 folds
     featureFolds = split(features);
@@ -44,10 +45,12 @@ function [trainEvaluation] = runKfold(features, labels, treeType)
             trainMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
             trainMetrics.F1Score = 2 * ( (trainMetrics.precision*trainMetrics.recall) / (trainMetrics.precision+trainMetrics.recall)  );
         end
-        trainMetrics.labels = trainingPredictions;
+        % trainMetrics.labels = trainingPredictions;
 
         % Append results
-        trainEvaluation{index,1} = trainMetrics;        
+        % trainEvaluation{index,1} = trainMetrics;    
+        trainEvaluation(index).labels = trainingPredictions;
+        trainEvaluation(index).metrics = trainMetrics;
     end
     
 end
