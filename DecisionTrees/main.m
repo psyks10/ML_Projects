@@ -15,38 +15,41 @@
 % First Section - Generate Decison Trees 
 % This section loads each dataset and generates the decision trees 
 % using the entire dataset
-
-% Set up trees to generate
-trees = {{1, 'Classification Tree'}, {0, 'Regression Tree'}};
-
-for t = 1:length(trees)
-    treeType = trees{t}{1};
-    treeName = trees{t}{2};
-    createTree(treeName, treeType);
-end
-
+% 
+% % Set up trees to generate
+% trees = {{1, 'Classification Tree'}, {0, 'Regression Tree'}};
+% 
+% for t = 1:length(trees)
+%     treeType = trees{t}{1};
+%     treeName = trees{t}{2};
+%     createTree(treeName, treeType);
+% end
+% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% Second Section - K-Fold
+% This section splits the data in train, test and validation sets,
+% runs K-Fold cross-validation and retuns evaluation metrics
 
-Second Section - K-Fold
-This section splits the data in train, test and validation sets,
-runs K-Fold cross-validation and retuns evaluation metrics
+% Classification
+% [features, labels] = loadDataset(1);
+% [trainEvaluationClass] = runKfold(features, labels, 1);
+% writecell([trainEvaluationClass.labels], 'ClassDecisionTreeLabels.csv');
+% writetable(struct2table([trainEvaluationClass.metrics]), 'ClassDecisionTreeMetrics.csv');
 
-Classification
-[features, labels] = loadDataset(1);
-[trainEvaluationClass] = runKfold(features, labels, 1);
-
-Regression
+%Regression
 [features, labels] = loadDataset(0);
 [trainEvaluationReg] = runKfold(features, labels, 0);
-
+writecell([trainEvaluationReg.labels], 'RegDecisionTreeLabels.csv');
+writetable(struct2table([trainEvaluationReg.metrics]), 'RegDecisionTreeMetrics.csv');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Functions
 
-function createTree(treeName, treeType)
-    [features, labels] = loadDataset(treeType);
-    decisionTree = decisionTreeLearning(features, labels, treeType);
-    DrawDecisionTree(decisionTree, treeName);
-end
-
+% function createTree(treeName, treeType)
+%     [features, labels] = loadDataset(treeType);
+%     decisionTree = decisionTreeLearning(features, labels, treeType);
+%     DrawDecisionTree(decisionTree, treeName);
+% end
+% 
 
