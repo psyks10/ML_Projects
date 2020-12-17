@@ -3,7 +3,7 @@ function results = polynomialTraining(type, features, labels)
     if type
         results = struct('C', NaN, 'NoOfSupportVectors', NaN, 'labels', NaN);
     else
-        results = struct('C', NaN, 'Epsilon', NaN, 'RMSE', NaN,'NoOfSupportVectors', NaN, 'labels', Na);
+        results = struct('C', NaN, 'Epsilon', NaN, 'RMSE', NaN,'NoOfSupportVectors', NaN, 'labels', NaN);
     end
     
     kIdx = getkFoldIdx(height(labels));
@@ -16,7 +16,8 @@ function results = polynomialTraining(type, features, labels)
         testData = features(kIdx{k}, :);
         testLabels = labels(kIdx{k},:);
 
-        cvResults = innerCrossValidation(type, trainData, trainLabels, 'Polynomial');
+        subset = 1:ceil(height(trainData)*0.1);
+        cvResults = innerCrossValidation(type, trainData(subset,:), trainLabels(subset,:), 'Polynomial');
         [~, idx] = min([cvResults.Error]);
         result = cvResults(idx);
 
