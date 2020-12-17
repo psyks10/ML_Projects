@@ -22,7 +22,6 @@ for type=types
             combos{2, count} = j;
         end
     end
-    %combos = combntns(1:length(filenames),2); combos
     j=1;
     
     for combo=combos
