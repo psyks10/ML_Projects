@@ -25,21 +25,21 @@ for t = 1:length(trees)
     createTree(treeName, treeType);
 end
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Second Section - K-Fold
-% This section splits the data in train, test and validation sets,
-% runs K-Fold cross-validation and retuns evaluation metrics
+Second Section - K-Fold
+This section splits the data in train, test and validation sets,
+runs K-Fold cross-validation and retuns evaluation metrics
 
-% Classification
-% [features, labels] = loadDataset(1);
-% [trainEvaluationClass] = runKfold(features, labels, 1);
-% 
-% Regression
-% [features, labels] = loadDataset(0);
-% [trainEvaluationReg] = runKfold(features, labels, 0);
+Classification
+[features, labels] = loadDataset(1);
+[trainEvaluationClass] = runKfold(features, labels, 1);
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Regression
+[features, labels] = loadDataset(0);
+[trainEvaluationReg] = runKfold(features, labels, 0);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Functions
 

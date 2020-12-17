@@ -50,7 +50,7 @@ function results = polynomialTraining(type, features, labels)
         else
             results(k).RMSE = calculateRMSE(testLabels, testPred);
         end
-        results(k).labels = testPred;
+        results(k).labels = testPred.';
     end
 end
 
