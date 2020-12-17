@@ -27,7 +27,7 @@ function results = polynomialTraining(type, features, labels)
                 'BoxConstraint', result.C);
         else 
             model = fitrsvm(trainData, trainLabels, ...
-                'KernelFunction', 'Polynomial', 'PolynomialOrder', result.q, ... %%%%%%%%%%%%%%
+                'KernelFunction', 'Polynomial', 'PolynomialOrder', result.q, ...
                 'BoxConstraint', result.C, 'Epsilon', result.Epsilon);
         end
 
