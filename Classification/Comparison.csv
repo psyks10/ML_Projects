@@ -1,0 +1,7 @@
+fdist,sdist,h,p
+ANN,Gaussian,1,0.00239446909508765
+ANN,Polynomial,1,4.30935193162619e-05
+ANN,DecisionTree,1,4.98987412443554e-07
+Gaussian,Polynomial,0,0.201167809760709
+Gaussian,DecisionTree,0,0.0652789044544537
+Polynomial,DecisionTree,0,0.571688892479844
