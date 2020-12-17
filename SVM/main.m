@@ -1,17 +1,13 @@
 typeName = ["Regression","Classification"];
 for type = 1:1
     [features, labels] = loadDataset(type);
-%     
-%     linearResults = linearTraining(type, features, labels);
-%     labellist = [linearResults.labels];
-%     writematrix(labellist, strcat(typeName{type+1}, 'linearSVM.csv'));
-%     
-%     guassianResults = gaussianTraining(type, features, labels);
-%     labellist = [guassianResults.labels];
-%     writematrix(labellist, strcat(typeName{type+1},'gaussianSVM.csv'));
+    
+    linearResults = linearTraining(type, features, labels);
+    writetable(struct2table(linearResults), strcat(typeName{type+1},'LinearFullResults.csv'));
+    
+    guassianResults = gaussianTraining(type, features, labels);
+    writetable(struct2table(guassianResults), strcat(typeName{type+1},'GuassianFullResults.csv'));
    
     polynomialResults = polynomialTraining(type, features, labels);
-    labellist = [guassianResults.labels];
-    writematrix(labellist, strcat(typeName{type+1},'polynomialSVM.csv'));
-
+    writetable(struct2table(polynomialResults), strcat(typeName{type+1},'PolynomialFullResults.csv'));
 end
