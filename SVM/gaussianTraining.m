@@ -8,6 +8,8 @@ function results = gaussianTraining(type, features, labels)
     end
     
     kIdx = getkFoldIdx(ceil(height(labels)));
+    
+
         
     for k = 1:10
       
@@ -17,10 +19,10 @@ function results = gaussianTraining(type, features, labels)
         testData = features(kIdx{k}, :);
         testTarg = labels(kIdx{k},:);
         
-        cvResults = innerCrossValidation(type, trainData, trainLabels, 'gaussian');
+        cvResults = innerCrossValidation(type, features, labels, 'gaussian');
         [~, idx] = min([cvResults.Error]);
         result = cvResults(idx);
-
+        
         if type
             model = fitcsvm(trainData, trainLabels, ...
                 'KernelFunction', 'RBF', 'KernelScale', result.Gamma, ...
@@ -51,7 +53,7 @@ function results = gaussianTraining(type, features, labels)
         else
             results(k).RMSE = calculateRMSE(testTarg, testPred);
         end
-        results(k).labels = testPred;
+        results(k).labels = testPred.';
     end
 end
 
