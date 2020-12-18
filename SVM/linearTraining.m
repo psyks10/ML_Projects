@@ -28,9 +28,23 @@ function results = linearTraining(type, features, labels)
         
             confusionMatrix = calculateConfusionMatrix(testLabels, testPred);
             testMetrics = struct('recall',NaN,'precision',NaN,'F1Score',NaN);
-            testMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
-            testMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
-            testMetrics.F1Score = 2 * ( (testMetrics.precision*testMetrics.recall) / (testMetrics.precision+testMetrics.recall)  );
+            if confusionMatrix.TP+confusionMatrix.FN==0
+                testMetrics.recall = 0;
+            else
+                testMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);  
+            end
+
+            if confusionMatrix.TP+confusionMatrix.FP==0
+                testMetrics.precision = 0;
+            else
+                testMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
+            end
+
+            if testMetrics.recall==0
+                testMetrics.F1Score = 0;
+            else
+                testMetrics.F1Score = 2 * ( (testMetrics.precision*testMetrics.recall) / (testMetrics.precision+testMetrics.recall)  );
+            end
             results(i).Metrics = testMetrics;
         else
             model = fitrsvm(trainData,trainLabels, 'KernelFunction','linear', 'BoxConstraint',1,'Epsilon', epsilons{i});

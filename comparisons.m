@@ -1,11 +1,8 @@
 
-types=["Classification/"];
-
-% need to seperate result csvs into Classification and Regression folder
-% need to rename file names
+types=["Classification/", "Regression/"];
 
 for type=types
-    filenames = ["ANN","Gaussian","Polynomial","DecisionTree"];
+    filenames = ["ANN","DecisionTree","Gaussian","Polynomial"];
     results = struct();
     comparison = struct("fdist",NaN, "sdist",NaN,"h",NaN,"p",NaN);
 
@@ -22,11 +19,12 @@ for type=types
             combos{2, count} = j;
         end
     end
-    j=1;
     
+    j=1;
     for combo=combos
         fdist = filenames{combo{1}};
         sdist = filenames{combo{2}};
+        
         if (combo{1}==1 || combo{2}==1)
             [h,p] = ttest(results.(fdist), results.(sdist));
         else
@@ -40,6 +38,6 @@ for type=types
         j=j+1;
     end
 
-    %writetable(struct2table(comparison), strcat(type,"Comparison.csv"));
+    writetable(struct2table(comparison), strcat(type,"Comparison.csv"));
 end
 
