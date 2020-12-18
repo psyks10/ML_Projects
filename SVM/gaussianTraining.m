@@ -1,6 +1,5 @@
 function results = gaussianTraining(type, features, labels)    
 
-
     if type
         results = struct('C', NaN, 'Gamma', NaN,'NoOfSupportVectors', NaN, 'labels', NaN);
     else
@@ -17,8 +16,12 @@ function results = gaussianTraining(type, features, labels)
         testData = features(kIdx{k}, :);
         testTarg = labels(kIdx{k},:);
         
-        subsets = 1:ceil(height(trainData)*0.05);
-        cvResults = innerCrossValidation(type, trainData(subsets,:), trainLabels(subsets,:), 'gaussian');
+        if type
+            cvResults = innerCrossValidation(type, trainData, trainLabels, 'gaussian');
+        else
+            subsets = 1:ceil(height(trainData)*0.05);
+            cvResults = innerCrossValidation(type, trainData(subsets,:), trainLabels(subsets,:), 'gaussian');
+        end
         [~, idx] = min([cvResults.Error]);
         result = cvResults(idx);
         
@@ -45,10 +48,25 @@ function results = gaussianTraining(type, features, labels)
         if type
             confusionMatrix = calculateConfusionMatrix(testTarg, testPred);
             testMetrics = struct('recall',NaN,'precision',NaN,'F1Score',NaN);
-            testMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
-            testMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
-            testMetrics.F1Score = 2 * ( (testMetrics.precision*testMetrics.recall) / (testMetrics.precision+testMetrics.recall)  );
+            if confusionMatrix.TP+confusionMatrix.FN==0
+                testMetrics.recall = 0;
+            else
+                testMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);  
+            end
+
+            if confusionMatrix.TP+confusionMatrix.FP==0
+                testMetrics.precision = 0;
+            else
+                testMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
+            end
+
+            if testMetrics.recall==0
+                testMetrics.F1Score = 0;
+            else
+                testMetrics.F1Score = 2 * ( (testMetrics.precision*testMetrics.recall) / (testMetrics.precision+testMetrics.recall)  );
+            end
             results(k).metrics = testMetrics;
+
         else
             results(k).RMSE = calculateRMSE(testTarg, testPred);
         end

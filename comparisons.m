@@ -40,6 +40,6 @@ for type=types
         j=j+1;
     end
 
-    writetable(struct2table(comparison), strcat(type,"Comparison.csv"));
+    %writetable(struct2table(comparison), strcat(type,"Comparison.csv"));
 end
 

@@ -16,8 +16,12 @@ function results = polynomialTraining(type, features, labels)
         testData = features(kIdx{k}, :);
         testLabels = labels(kIdx{k},:);
 
-        subset = 1:ceil(height(trainData)*0.05);
-        cvResults = innerCrossValidation(type, trainData(subset,:), trainLabels(subset,:), 'Polynomial');
+        if type
+            cvResults = innerCrossValidation(type, trainData, trainLabels, 'Polynomial');
+        else
+            subset = 1:ceil(height(trainData)*0.05);
+            cvResults = innerCrossValidation(type, trainData(subset,:), trainLabels(subset,:), 'Polynomial');
+        end
         [~, idx] = min([cvResults.Error]);
         result = cvResults(idx);
 
@@ -44,10 +48,25 @@ function results = polynomialTraining(type, features, labels)
         if type
             confusionMatrix = calculateConfusionMatrix(testLabels, testPred);
             testMetrics = struct('recall',NaN,'precision',NaN,'F1Score',NaN);
-            testMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);
-            testMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
-            testMetrics.F1Score = 2 * ( (testMetrics.precision*testMetrics.recall) / (testMetrics.precision+testMetrics.recall)  );
+            if confusionMatrix.TP+confusionMatrix.FN==0
+                testMetrics.recall = 0;
+            else
+                testMetrics.recall = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FN);  
+            end
+
+            if confusionMatrix.TP+confusionMatrix.FP==0
+                testMetrics.precision = 0;
+            else
+                testMetrics.precision = confusionMatrix.TP / (confusionMatrix.TP+confusionMatrix.FP);
+            end
+
+            if testMetrics.recall==0
+                testMetrics.F1Score = 0;
+            else
+                testMetrics.F1Score = 2 * ( (testMetrics.precision*testMetrics.recall) / (testMetrics.precision+testMetrics.recall)  );
+            end
             results(k).metrics = testMetrics;
+
         else
             results(k).RMSE = calculateRMSE(testLabels, testPred);
         end
