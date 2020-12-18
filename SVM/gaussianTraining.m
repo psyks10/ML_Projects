@@ -9,8 +9,6 @@ function results = gaussianTraining(type, features, labels)
     
     kIdx = getkFoldIdx(ceil(height(labels)));
     
-
-        
     for k = 1:10
       
         trainIdx = horzcat(kIdx{setdiff(1:10,k)}).';
@@ -19,7 +17,8 @@ function results = gaussianTraining(type, features, labels)
         testData = features(kIdx{k}, :);
         testTarg = labels(kIdx{k},:);
         
-        cvResults = innerCrossValidation(type, features, labels, 'gaussian');
+        subsets = 1:ceil(height(trainData)*0.05);
+        cvResults = innerCrossValidation(type, trainData(subsets,:), trainLabels(subsets,:), 'gaussian');
         [~, idx] = min([cvResults.Error]);
         result = cvResults(idx);
         

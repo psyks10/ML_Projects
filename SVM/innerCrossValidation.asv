@@ -67,10 +67,9 @@ function results = innerCrossValidation(type, features, labels, kernelFunction)
                     foldscores{innerk,2} = height(cvSVMModel.SupportVectors);
                 end
                 avgs = cell2mat(foldscores(:,1));
-                idx = isnan(avgs);
-                [delRows,~] = find(idx);
-                avgs(delRows,:) = [];
-            
+                idx=any(isnan(avgs));
+                setdiff(idx, he
+                avgs(idx,:)=[];
                 avgScore = mean(avgs);
                 n = length(results)+1;
                 results(n).C = C;
@@ -78,7 +77,6 @@ function results = innerCrossValidation(type, features, labels, kernelFunction)
                 if ~type
                     results(n).Epsilon = epsilon;
                 end
-                
                 results(n).Error = avgScore;
                 noOfSupportVectors = mean(cell2mat(foldscores(:,2)));
                 results(n).NoOfSupportVectors = noOfSupportVectors;
